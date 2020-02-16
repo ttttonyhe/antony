@@ -1,32 +1,53 @@
 <template>
-  <div id="app">
+  <div id="app" v-cloak>
+    <!-- Menu -->
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+      <template v-if="mobile">
+        <mobileNav />
+      </template>
+      <template v-else>
+        <computerNav />
+      </template>
     </div>
-    <router-view/>
+    <!-- Menu -->
+
+    <!-- Content -->
+    <router-view />
+    <!-- Content -->
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+// PC & Mobile Navigation Menu Components
+import mobileNav from "./components/headers/mobileNav";
+import computerNav from "./components/headers/computerNav";
 
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+export default {
+  data() {
+    return {
+      mobile: false
+    };
+  },
+  components: {
+    mobileNav,
+    computerNav
+  },
+  mounted() {
+    // Detect Mobile or PC using UserAgent
+    let flag = navigator.userAgent.match(
+      /(Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i
+    );
+    if (flag) {
+      this.mobile = true;
+    } else {
+      this.mobile = false;
     }
   }
+};
+</script>
+
+<style lang="scss">
+[v-cloak] {
+  display: none !important;
 }
 </style>

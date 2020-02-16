@@ -1,0 +1,11 @@
+/*
+    name: 样式表入口
+    author: TonyHe
+    update: 16-2-2020
+*/
+
+@media (prefers-color-scheme: dark) {
+    @import "style_dark";
+}
+
+@import "style_light";
