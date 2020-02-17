@@ -2,88 +2,17 @@
   <div id="index">
     <div class="grid grid-centered" style="max-width: 660px;padding: 0px 20px;margin-top: 80px">
       <div class="grid-cell" id="grid-cell">
-        <div id="header_info" class="index-top">
-          <nav class="header-nav reveal">
-            <img class="header-avatar-top" src="https://static.ouorz.com/t.jpg" />
-            <a
-              style="text-decoration:none;"
-              href="https://www.ouorz.com"
-              class="header-logo"
-              title="TonyHe"
-            >TonyHe</a>
-
-            <p class="lead" style="margin-top: 0px;margin-left:5px">Just A Poor Lifesinger</p>
-          </nav>
-          <div class="index-cates">
-            <li
-              class="cat-item cat-item-4 loading-line"
-              style="display: inline-block;width: 98%;height: 35px;box-shadow: none;border-radius: 0px;background: rgb(236, 237, 239);"
-              v-if="loading_cates"
-            ></li>
-            <li class="cat-item cat-item-4 cat-real" style="display: inline-block;">
-              <a href="https://www.ouorz.com/category/friends" title="和伙伴们交换网站链接，再高兴不过的事!">
-                <div class="header-item-icon-div">
-                  <i class="ri-user-5-line"></i>
-                </div>伙伴
-              </a>
-            </li>
-            <li class="cat-item cat-item-4 cat-real" style="display: inline-block;">
-              <a href="https://www.ouorz.com/category/resources" title="一些...小玩意儿">
-                <div class="header-item-icon-div">
-                  <i class="ri-dvd-line"></i>
-                </div>推荐
-              </a>
-            </li>
-            <li class="cat-item cat-item-4 cat-real" style="display: inline-block;">
-              <a href="https://www.ouorz.com/category/projects" title="我所做过的每一个项目，都将在地球上留下独特的痕迹">
-                <div class="header-item-icon-div">
-                  <i class="ri-product-hunt-line"></i>
-                </div>项目
-              </a>
-            </li>
-            <li class="cat-item cat-item-4 cat-real" style="display: inline-block;">
-              <a
-                href="https://www.ouorz.com/category/lifetime"
-                title="Talk about some shit in my life..."
-              >
-                <div class="header-item-icon-div">
-                  <i class="ri-hand-heart-line"></i>
-                </div>琐碎
-              </a>
-            </li>
-            <li class="cat-item cat-item-4 cat-real" style="display: inline-block;">
-              <a
-                href="https://www.ouorz.com/category/research"
-                title="To make the world a better place"
-              >
-                <div class="header-item-icon-div">
-                  <i class="ri-code-box-line"></i>
-                </div>折腾
-              </a>
-            </li>
-            <li class="cat-item cat-item-4 cat-real" style="display: inline-block;">
-              <a href="https://www.ouorz.com/music.html" title="音乐收藏与推荐">
-                <div class="header-item-icon-div">
-                  <i class="ri-netease-cloud-music-line"></i>
-                </div>音乐
-              </a>
-            </li>
-          </div>
-          <div>
-            <ul class="post_tags">
-              <li class="cat-real" v-for="(tag,index) in tages" :key="index">
-                <a :href="tag.link">#{{ tag.name }}</a>
-              </li>
-              <li
-                class="loading-line"
-                style="background: rgb(236, 237, 238);height: 25px;width: 100%;"
-                v-if="loading_tages"
-              ></li>
-            </ul>
-          </div>
-        </div>
+        <!-- 顶部标题与分类区块 -->
+        <template v-if="!loading_tages">
+          <headerTop :loading_tages="loading_tages" :loading_cates="loading_cates" :tages="tages" />
+        </template>
+        <template v-else>
+          <headerTop :loading_tages="loading_tages" :loading_cates="loading_cates" />
+        </template>
+        <!-- 顶部标题与分类区块 -->
 
         <ul class="article-list">
+          <!-- cookies 使用提示 -->
           <li
             class="article-list-item reveal index-post-list notice-list"
             v-if="notice.visible"
@@ -92,6 +21,7 @@
             <div>By using this website, you agree to our use of cookies. We use cookies to provide you with a great experience and to help our website run effectively.</div>
             <a @click="discard_notice()">Discard</a>
           </li>
+          <!-- cookies 使用提示 -->
 
           <li
             :class="'article-list-item reveal index-post-list ' + (post.sticky ? 'sticky-one' : '')"
@@ -99,6 +29,7 @@
             :key="index"
             :id="'div' + post.id"
           >
+            <!-- 不包含特色图像文章 -->
             <template
               v-if="post.post_img.url == false && post.post_categories[0].term_id !== 58 && !post.post_metas.status"
             >
@@ -136,7 +67,7 @@
                 >全文速览</button>
               </div>
 
-              <a :href="post.link" style="text-decoration: none;">
+              <a :href="'/post/' + post.id" style="text-decoration: none;">
                 <h5 v-html="post.title.rendered"></h5>
               </a>
 
@@ -182,7 +113,9 @@
                 <span v-else class="article-list-minutes">0&nbsp;Views</span>
               </div>
             </template>
+            <!-- 不包含特色图像文章 -->
 
+            <!-- 包含特色图像文章 -->
             <template
               v-else-if="post.post_img.url && post.post_categories[0].term_id !== 58 && !post.post_metas.status"
             >
@@ -207,7 +140,7 @@
                     v-html="post.post_categories[0].name"
                     class="img-cate"
                   ></a>
-                  <a :href="post.link" style="text-decoration: none;">
+                  <a :href="'/post/' + post.id" style="text-decoration: none;">
                     <h5
                       v-html="post.title.rendered"
                       style="margin: 0px;padding: 0px;margin-top:15px"
@@ -226,7 +159,9 @@
                 </div>
               </div>
             </template>
+            <!-- 包含特色图像文章 -->
 
+            <!-- 状态类型文章 -->
             <template
               v-else-if="post.post_categories[0].term_id === 58 || !!post.post_metas.status"
             >
@@ -240,26 +175,27 @@
                 </span>
               </div>
             </template>
+            <!-- 状态类型文章 -->
           </li>
 
-          <!-- 加载占位DIV -->
-          <li
-            class="article-list-item reveal index-post-list bottom"
-            :style="'display:'+loading_css"
-          >
-            <div class="skeleton">
-              <div class="skeleton-head"></div>
-              <div class="skeleton-body">
-                <div class="skeleton-title"></div>
-                <div class="skeleton-content"></div>
+          <!-- 无限滚动占位内容 -->
+          <infinite-loading @infinite="new_page">
+            <li
+              class="article-list-item reveal index-post-list bottom"
+              slot="spinner"
+            >
+              <div class="skeleton">
+                <div class="skeleton-head"></div>
+                <div class="skeleton-body">
+                  <div class="skeleton-title"></div>
+                  <div class="skeleton-content"></div>
+                </div>
               </div>
-            </div>
-          </li>
-          <!-- 加载占位DIV -->
+            </li>
+            <div slot="no-more">- EOF -</div>
+          </infinite-loading>
+          <!-- 无限滚动占位内容 -->
 
-          <!-- 加载按钮 -->
-          <button @click="new_page" id="scoll_new_list" style="opacity:0"></button>
-          <!-- 加载按钮 -->
         </ul>
       </div>
     </div>
@@ -267,7 +203,16 @@
 </template>
 
 <script>
+// import header-top'
+import headerTop from "../components/top";
+
+// import infinite loading feature
+import InfiniteLoading from "vue-infinite-loading";
+
+// import jQuery feature
 import $ from "jquery";
+
+// imort hightlight.js feature and stylesheet
 import hljs from "highlight.js";
 import "highlight.js/styles/rainbow.css";
 
@@ -279,7 +224,6 @@ const highlightCode = () => {
   });
 };
 
-var click = 0; //初始化加载次数
 var paged = 1; //获取当前页数
 
 /* 展现内容(避免爆代码) */
@@ -290,6 +234,10 @@ $(".cat-real").attr("style", "display:inline-block");
 
 export default {
   name: "Index",
+  components: {
+    headerTop,
+    InfiniteLoading
+  },
   data() {
     return {
       posts: null,
@@ -374,24 +322,11 @@ export default {
       .then(() => {
         this.loading = false;
         paged++; //加载完1页后累加页数
-        //加载完文章列表后监听滑动事件
-        $(window).scroll(function() {
-          var scrollTop = $(window).scrollTop();
-          var scrollHeight = $(".bottom").offset().top - 800;
-          if (scrollTop >= scrollHeight) {
-            if (click == 0) {
-              //接近底部加载一次新文章
-              $("#scoll_new_list").click();
-              click++; //加载次数计次
-            }
-          }
-        });
       });
   },
   methods: {
-    //定义方法
-    new_page: function() {
-      //加载下一页文章列表
+    //加载下一页文章列表
+    new_page: function($state) {
       $("#view-text").html("-&nbsp;Loading&nbsp;-");
       this.axios
         .get(
@@ -406,30 +341,19 @@ export default {
             //判断是否最后一页
             $("#view-text").html("-&nbsp;Posts List&nbsp;-");
             this.posts.push.apply(this.posts, response.data); //拼接在上一页之后
-            click = 0;
             paged++;
+            $state.loaded();
           } else {
             $("#view-text").html("-&nbsp;All Posts&nbsp;-");
-            $(".bottom h5")
-              .html('No more posts O__O "…')
-              .css({
-                background: "#fff",
-                color: "#999"
-              });
-            this.loading_css = "none";
+            $state.complete();
           }
         })
         .catch(() => {
           $("#view-text").html("-&nbsp;All Posts&nbsp;-");
-          $(".bottom h5")
-            .html('No more posts O__O "…')
-            .css({
-              background: "#fff",
-              color: "#999"
-            });
-          this.loading_css = "none";
+          $state.complete();
         });
     },
+    // 文章内容快速预览
     preview: function(postId) {
       $("#btn" + this.previewPost).html("全文速览"); //以防未收起上个预览，更改上个预览按钮
       this.previewPost = postId; //准备预览文章 ID
@@ -449,6 +373,7 @@ export default {
           }
         });
     },
+    // 关闭文章内容快速预览
     closePreview: function(postId) {
       $("#btn" + postId).html("全文速览"); //收起预览，更改按钮
       this.previewClose = postId; //收起预览的文章 ID
@@ -458,11 +383,13 @@ export default {
       this.previewClass = ""; //初始化预览内容块 class
       this.previewClose = 0; //初始化已收起预览的文章 ID
     },
+    // 关闭 cookies 使用提示
     discard_notice() {
       this.cookie.set("ouorz_read_cookie", 1);
       this.notice.visible = false;
     }
   },
+  // 监听页面变化
   updated() {
     // 页面内容变化时执行代码渲染
     highlightCode();

@@ -29,6 +29,18 @@ Vue.prototype.axios = axios
 import cookie from 'vue-cookie'
 Vue.prototype.cookie = cookie;
 
+// import progress bar feature
+import NProgress from "nprogress"
+import 'nprogress/nprogress.css'
+
+NProgress.configure({
+  easing: 'ease-in-out',
+  speed: 500,
+  showSpinner: false,
+  trickleSpeed: 200,
+  minimum: 0.2
+})
+
 // Import Global Stylesheet
 import './styles/main.scss'
 
@@ -40,10 +52,14 @@ Vue.config.productionTip = false
 
 // Change Title According to Path
 router.beforeEach((to, from, next) => {
-  if(to.meta.title) {
+  if (to.meta.title) {
     document.title = to.meta.title;
   }
+  NProgress.start();
   next();
+})
+router.afterEach(() => {
+  NProgress.done();
 })
 
 // Vue.js

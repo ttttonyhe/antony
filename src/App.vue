@@ -14,6 +14,10 @@
     <!-- Content -->
     <router-view />
     <!-- Content -->
+
+    <!-- Footer -->
+    <siteFooter />
+    <!-- Footer -->
   </div>
 </template>
 
@@ -21,6 +25,7 @@
 // PC & Mobile Navigation Menu Components
 import mobileNav from "./components/headers/mobileNav";
 import computerNav from "./components/headers/computerNav";
+import siteFooter from "./components/footer";
 
 export default {
   data() {
@@ -30,7 +35,8 @@ export default {
   },
   components: {
     mobileNav,
-    computerNav
+    computerNav,
+    siteFooter
   },
   mounted() {
     // Detect Mobile or PC using UserAgent
@@ -49,5 +55,9 @@ export default {
 <style lang="scss">
 [v-cloak] {
   display: none !important;
+}
+#nprogress .bar{
+  background: #3797fe !important;
+  z-index: 9999;
 }
 </style>

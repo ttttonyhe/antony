@@ -26,3 +26,20 @@ export default {
     }
 }
 ```
+
+### (note) How many content block can there be in one component?
++ Only one
++ eg:
++ Correct
+``` html
+<template>
+  <div class="one"></div>
+  </template>
+```
++ Incorrect
+``` html
+<template>
+  <div class="one"></div>
+  <div class="two"></div>
+</template>
+```

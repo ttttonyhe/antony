@@ -15,11 +15,15 @@
     "ismobilejs": "^1.0.3",
     "jquery": "^3.4.1",
     "mobile-device-detect": "^0.3.3",
+    "nprogress": "^0.2.0",
     "qs": "^6.9.1",
     "remixicon": "^2.3.0",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
     "vue-cookie": "^1.1.4",
+    "vue-go-top-button": "^1.0.4",
+    "vue-infinite-loading": "^2.4.4",
+    "vue-infinite-scroll": "^2.0.2",
     "vue-router": "^3.1.5"
   },
   "devDependencies": {

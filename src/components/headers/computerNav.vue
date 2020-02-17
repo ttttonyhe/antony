@@ -3,9 +3,9 @@
     <header class="tony-header-fixed" id="header-div">
       <!-- Content Menu -->
       <div class="header-div1" v-if="($route.path).match(routeDetect)">
-        <a href="https://www.ouorz.com" style="display: inline-block;">
+        <router-link to="/" style="display: inline-block;">
           <img src="https://static.ouorz.com/t.jpg" />
-        </a>
+        </router-link>
         <a href="https://www.ouorz.com/feed">
           <b-button variant="light">RSS 订阅</b-button>
         </a>
@@ -16,9 +16,9 @@
       <!-- Content Menu -->
       <!-- Index Menu -->
       <div class="header-div1-1" v-else>
-        <a href="https://www.ouorz.com">
+        <router-link to="/" style="display: inline-block;">
           <img src="https://static.ouorz.com/t.jpg" />
-        </a>
+        </router-link>
         <a>
           <b-button variant="light" @click="openSearch">博客搜索</b-button>
         </a>
@@ -44,7 +44,7 @@
         </router-link>
 
         <!-- Contact Dropdown -->
-        <b-dropdown variant="primary" split html="关于我">
+        <b-dropdown variant="primary" split split-href="https://www.ouorz.com/126" html="关于我">
           <b-dropdown-item href="https://www.ouorz.com/comment_manage.html">Comments</b-dropdown-item>
           <b-dropdown-item href="https://github.com/HelipengTony">Github</b-dropdown-item>
           <div class="dropdown-divider"></div>
@@ -115,12 +115,17 @@
       </div>
       <!-- Search -->
     </header>
+    <div id="view-div" class="center-info" style="display:none">
+        <p style="font-weight: 600;font-size: 1.2rem;color: #555;" id="view-text">-&nbsp;Posts List&nbsp;-</p>
+    </div>
   </div>
 </template>
 
 <script>
+// import jqeury feature
 import $ from "jquery";
 
+// add event listener which changes class for the nav when scrolling
 $(window).scroll(function() {
   var a = $(document).scrollTop();
   if (a <= 0) {
@@ -160,11 +165,13 @@ export default {
     };
   },
   methods: {
+    // 显示搜索区域
     openSearch: function() {
       $("#search_form").attr("class", "search_form_play");
       $(".search-bg-b").attr("style", "display:block");
       $("#search-div").attr("style", "display:block");
     },
+    // 请求搜索
     searchQuery: function() {
       this.search_loading = false;
       this.loading_ph = true;
@@ -178,6 +185,7 @@ export default {
           this.search_loading = true;
         });
     },
+    // 关闭搜索区域
     closeSearch: function() {
       this.loading_ph = false;
       this.search_content = null;

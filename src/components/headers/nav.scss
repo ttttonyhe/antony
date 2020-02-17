@@ -3,6 +3,7 @@
         button {
             margin-top: 12px;
             margin-left: 15px;
+            letter-spacing: 1.5px;
         }
     }
 }
@@ -34,9 +35,10 @@
 
     .b-dropdown {
         margin-left: 15px;
-        button:nth-child(1){
+        a.btn:nth-child(1){
             padding-left: 15px;
             letter-spacing: 2px;
+            font-weight: 600 !important;
         }
     }
 }
