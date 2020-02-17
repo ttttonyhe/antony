@@ -989,8 +989,15 @@ img {
     color: rgba(33, 35, 37, 0.65);
     vertical-align: middle;
     margin-left: 6px;
-    &:nth-child(1){
+
+    &:nth-child(1) {
         margin-left: 0px;
+    }
+
+    i {
+        display: inline-block;
+        vertical-align: text-top;
+        margin-top: -4.45px;
     }
 }
 
@@ -1049,6 +1056,8 @@ img {
     display: block;
     font-weight: 300;
     padding: 0 10px;
+    font-weight: normal;
+    color: #212529;
 
     .wp-video {
         width: 100% !important;
@@ -1883,7 +1892,7 @@ table {
     top: 0px;
     box-shadow: rgba(0, 0, 0, 0.04) 0px 4px 8px;
     display: flex;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.95);
     z-index: 2;
     padding: 0 35px;
     transition: ease-in-out .2s
@@ -2184,7 +2193,7 @@ table {
     z-index: 2;
     text-align: center;
     position: fixed;
-    top: 16px;
+    top: 12px;
     letter-spacing: 2px
 }
 
@@ -2252,7 +2261,8 @@ table {
     overflow-y: auto;
 
     a {
-        color:#666 !important;
+        color: #666 !important;
+
         i {
             display: inline-block;
             vertical-align: text-top;
@@ -2323,14 +2333,15 @@ table {
     color: #333;
     font-size: 1.25rem;
     line-height: 1.4;
-    
+
 }
 
 .index-div-next p {
     margin: 0px;
     color: #777;
     margin-top: 8px;
-    letter-spacing: .5px
+    letter-spacing: .5px;
+    line-height: 1.5;
 }
 
 .index-div-next p a {
@@ -2622,7 +2633,7 @@ pre {
 }
 
 .single-donate {
-    padding: 17px 20px 13px 20px !important;
+    padding: 15px 20px 12px 20px !important;
     width: 200px !important
 }
 
@@ -2638,6 +2649,7 @@ pre {
     float: right;
     font-weight: 500;
     font-size: 21.5px;
+    margin-top: -4.5px;
 }
 
 .post-date {
@@ -2811,6 +2823,32 @@ input:focus {
         }
     }
 
+}
+
+.post-header {
+    text-decoration: none;
+    color: #888 !important;
+    letter-spacing: .5px;
+}
+
+.cate-name {
+    margin-bottom: -10px;
+    text-decoration: none;
+}
+
+.cate-back {
+    position: absolute;
+    transform: translateY(-80px) translateX(180px);
+
+    i {
+        display: inline-block;
+        vertical-align: text-top;
+        margin-top: -1px;
+    }
+}
+
+.cate-link-item-p{
+    margin: -10px 0px 10px 1px !important;
 }
 
 /*# sourceMappingURL=style.css.map */

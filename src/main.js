@@ -29,10 +29,9 @@ Vue.prototype.axios = axios
 import cookie from 'vue-cookie'
 Vue.prototype.cookie = cookie;
 
-// import progress bar feature
+// Import & configure progress bar feature
 import NProgress from "nprogress"
 import 'nprogress/nprogress.css'
-
 NProgress.configure({
   easing: 'ease-in-out',
   speed: 500,
@@ -40,6 +39,10 @@ NProgress.configure({
   trickleSpeed: 200,
   minimum: 0.2
 })
+
+// Import & use head meta modification feature
+import VueHead from 'vue-head'
+Vue.use(VueHead)
 
 // Import Global Stylesheet
 import './styles/main.scss'
@@ -50,15 +53,18 @@ Vue.prototype.config = config
 // Disable Production Tip
 Vue.config.productionTip = false
 
-// Change Title According to Path
+/* Before & after switching to a new route */
 router.beforeEach((to, from, next) => {
+  // Change Title According to Path
   if (to.meta.title) {
     document.title = to.meta.title;
   }
+  // Start progress bar
   NProgress.start();
   next();
 })
 router.afterEach(() => {
+  // Complete progress bar
   NProgress.done();
 })
 

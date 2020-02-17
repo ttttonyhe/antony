@@ -1,7 +1,8 @@
 <template>
-  <div>
+  <div id="posts">
     <div class="grid grid-centered">
       <div class="grid-cell" id="grid-cell">
+        <!-- 左侧区块 -->
         <div class="single-left" :style="(exist_index ? '' : 'margin-top:-15px')">
           <div class="index-div">
             <div style="padding:0px 25px" class="single-index">
@@ -51,11 +52,18 @@
             </div>
           </template>
         </div>
+        <!-- 左侧区块 -->
 
+        <!-- 文章主体 -->
+
+        <!-- 阅读进度条 -->
         <div class="reading-bar"></div>
+        <!-- 阅读进度条 -->
+
         <article class="article reveal">
           <div id="load">
-            <header class="article-header">
+            <!-- 文章顶部 -->
+            <div class="article-header">
               <span class="badge badge-pill badge-danger single-badge">
                 <a href="https://www.ouorz.com" style="text-decoration:none">
                   <i class="ri-article-line"></i>
@@ -63,21 +71,20 @@
                 </a>
               </span>
               <span class="badge badge-pill badge-danger single-badge" style="margin-left: 10px;">
-                <a
-                  :href="cate_url"
-                  style="text-decoration: none;color: #888;letter-spacing: .5px;"
-                  v-html="cate"
-                >分类目录</a>
+                <a :href="cate_url" class="post-header" v-html="cate">分类目录</a>
               </span>
-              <span class="badge badge-pill badge-danger single-badge" style="margin-left: 10px;">
+              <span class="badge badge-pill badge-danger single-badge" style="margin-left: 10px;" v-b-tooltip.hover title="预计阅读时长">
                 <a
                   :href="cate_url"
-                  style="text-decoration: none;color: #888;letter-spacing: .5px;"
+                  class="post-header"
                   v-html="posts.post_metas.reading.time_required + ' mins'"
-                ></a>
+                >阅读时间</a>
               </span>
-
+              <!-- 文章标题 -->
               <h2 class="single-h2" v-html="posts.post_metas.title"></h2>
+              <!-- 文章标题 -->
+
+              <!-- 底部信息 -->
               <div class="article-list-footer">
                 <span class="article-list-date">{{ posts.post_date }}</span>
                 <span class="article-list-divider">/</span>
@@ -87,23 +94,17 @@
                   class="article-list-minutes"
                 >{{ posts.post_metas.reading.word_count}} &nbsp;Words</span>
               </div>
-              <div class="single-line"></div>
-            </header>
-            <template v-if="loading">
-              <div class="article-content">
-                <div class="skeleton">
-                  <div class="skeleton-head"></div>
-                  <div class="skeleton-body">
-                    <div class="skeleton-title"></div>
-                    <div class="skeleton-content"></div>
-                  </div>
-                </div>
-              </div>
-            </template>
-            <template>
-              <div class="article-content" v-html="posts.content.rendered"></div>
-            </template>
+              <!-- 底部信息 -->
 
+              <div class="single-line"></div>
+            </div>
+            <!-- 文章顶部 -->
+
+            <!-- 文章内容 -->
+            <div class="article-content" v-html="posts.content.rendered"></div>
+            <!-- 文章内容 -->
+
+            <!-- 文章标签 -->
             <div
               style="text-align: left;margin: 60px 0px 40px 8px;border-radius: 6px;"
               v-if="post_tags.length"
@@ -135,7 +136,9 @@
                 </li>
               </ul>
             </div>
+            <!-- 文章标签 -->
 
+            <!-- 文章评论 -->
             <div class="article-comments" id="article-comments" style="margin-top:50px">
               <iframe
                 :src="'https://www.ouorz.com/wp-content/themes/peg/comm/index.html?id=' + this.$route.params.id"
@@ -143,8 +146,11 @@
                 frameborder="0"
               ></iframe>
             </div>
+            <!-- 文章评论 -->
           </div>
         </article>
+        <!-- 文章主体 -->
+        
       </div>
     </div>
   </div>
@@ -165,6 +171,7 @@ const highlightCode = () => {
 };
 
 export default {
+  name: "Posts",
   data() {
     return {
       posts: null,
@@ -174,10 +181,11 @@ export default {
       cate_url: "",
       post_tags: [],
       post_prenext: [],
-      exist_index: true
+      exist_index: true,
+      post_title: "Loading..."
     };
   },
-  mounted() {
+  created() {
     //获取文章
     this.axios
       .get("https://www.ouorz.com/wp-json/wp/v2/posts/" + this.$route.params.id)
@@ -189,6 +197,7 @@ export default {
       })
       .then(() => {
         this.loading = false;
+        this.post_title = this.posts.post_metas.title;
         this.cate = this.posts.post_categories[0].name;
         this.cate_url = this.posts.post_categories[0].link;
         this.post_tags = this.posts.post_tags;
@@ -366,6 +375,8 @@ export default {
     this.createReadingBar();
     // 页面内容变化时执行代码渲染
     highlightCode();
+    // 夜间加载完毕改变 title
+    document.title = "TonyHe - " + this.posts.post_metas.title;
   }
 };
 </script>

@@ -170,7 +170,7 @@
                 <span class="article-list-date">{{ post.post_date }}</span>
                 <span class="article-list-divider">-</span>
                 <span class="article-list-minutes">
-                  <i class="czs-chemistry"></i>
+                  <i class="ri-contrast-2-line"></i>
                   状态 | {{ post.post_metas.status ? post.post_metas.status : '无状态' }}
                 </span>
               </div>
@@ -179,11 +179,8 @@
           </li>
 
           <!-- 无限滚动占位内容 -->
-          <infinite-loading @infinite="new_page">
-            <li
-              class="article-list-item reveal index-post-list bottom"
-              slot="spinner"
-            >
+          <mugen-scroll :handler="new_page" :should-handle="loading_first">
+            <li class="article-list-item reveal index-post-list bottom" v-if="!loading_end">
               <div class="skeleton">
                 <div class="skeleton-head"></div>
                 <div class="skeleton-body">
@@ -192,10 +189,8 @@
                 </div>
               </div>
             </li>
-            <div slot="no-more">- EOF -</div>
-          </infinite-loading>
+          </mugen-scroll>
           <!-- 无限滚动占位内容 -->
-
         </ul>
       </div>
     </div>
@@ -207,7 +202,7 @@
 import headerTop from "../components/top";
 
 // import infinite loading feature
-import InfiniteLoading from "vue-infinite-loading";
+import MugenScroll from "vue-mugen-scroll";
 
 // import jQuery feature
 import $ from "jquery";
@@ -236,7 +231,7 @@ export default {
   name: "Index",
   components: {
     headerTop,
-    InfiniteLoading
+    MugenScroll
   },
   data() {
     return {
@@ -255,6 +250,8 @@ export default {
       previewContent: "",
       previewClass: "",
       previewClose: 0,
+      loading_first: false,
+      loading_end: false,
       notice: {
         visible: false
       }
@@ -321,12 +318,13 @@ export default {
       })
       .then(() => {
         this.loading = false;
-        paged++; //加载完1页后累加页数
+        this.loading_first = true;
+        paged = 2; //加载完1页后累加页数
       });
   },
   methods: {
     //加载下一页文章列表
-    new_page: function($state) {
+    new_page: function() {
       $("#view-text").html("-&nbsp;Loading&nbsp;-");
       this.axios
         .get(
@@ -341,16 +339,18 @@ export default {
             //判断是否最后一页
             $("#view-text").html("-&nbsp;Posts List&nbsp;-");
             this.posts.push.apply(this.posts, response.data); //拼接在上一页之后
-            paged++;
-            $state.loaded();
+            paged += 1;
           } else {
             $("#view-text").html("-&nbsp;All Posts&nbsp;-");
-            $state.complete();
+            this.loading_first = false;
+            this.loading_end = true;
           }
         })
         .catch(() => {
           $("#view-text").html("-&nbsp;All Posts&nbsp;-");
-          $state.complete();
+          paged = 1;
+          this.loading_first = false;
+          this.loading_end = true;
         });
     },
     // 文章内容快速预览

@@ -3086,6 +3086,11 @@ electron-to-chromium@^1.3.349:
   resolved "https://registry.npm.taobao.org/electron-to-chromium/download/electron-to-chromium-1.3.351.tgz#78bcf8e9092013232b2fb72b9db423d96e92604c"
   integrity sha1-eLz46QkgEyMrL7crnbQj2W6SYEw=
 
+element-in-view@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.npm.taobao.org/element-in-view/download/element-in-view-0.1.0.tgz#662f41f9a8d3b8ca4587c1ddb427b7d27af88bc9"
+  integrity sha1-Zi9B+ajTuMpFh8HdtCe30nr4i8k=
+
 elliptic@^6.0.0:
   version "6.5.2"
   resolved "https://registry.npm.taobao.org/elliptic/download/elliptic-6.5.2.tgz#05c5678d7173c049d8ca433552224a495d0e3762"
@@ -7895,6 +7900,11 @@ tar@^2.0.0:
     fstream "^1.0.12"
     inherits "2"
 
+tb-skeleton@^0.3.6:
+  version "0.3.6"
+  resolved "https://registry.npm.taobao.org/tb-skeleton/download/tb-skeleton-0.3.6.tgz#51ef0a47da9f7751b997003d3ed5691287035d31"
+  integrity sha1-Ue8KR9qfd1G5lwA9PtVpEocDXTE=
+
 terser-webpack-plugin@^1.4.3:
   version "1.4.3"
   resolved "https://registry.npm.taobao.org/terser-webpack-plugin/download/terser-webpack-plugin-1.4.3.tgz#5ecaf2dbdc5fb99745fd06791f46fc9ddb1c9a7c"
@@ -7961,6 +7971,11 @@ thread-loader@^2.1.3:
     loader-runner "^2.3.1"
     loader-utils "^1.1.0"
     neo-async "^2.6.0"
+
+throttleit@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/throttleit/download/throttleit-1.0.0.tgz#9e785836daf46743145a5984b6268d828528ac6c"
+  integrity sha1-nnhYNtr0Z0MUWlmEtiaNgoUorGw=
 
 through2@^2.0.0:
   version "2.0.5"
@@ -8396,6 +8411,11 @@ vue-go-top-button@^1.0.4:
   dependencies:
     vue "^2.6.9"
 
+vue-head@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.npm.taobao.org/vue-head/download/vue-head-2.2.0.tgz#9e3a141d5a011599a3f6d7adb42a65c428cf73e1"
+  integrity sha1-njoUHVoBFZmj9tettCplxCjPc+E=
+
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.npm.taobao.org/vue-hot-reload-api/download/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
@@ -8421,6 +8441,14 @@ vue-loader@^15.8.3:
     loader-utils "^1.1.0"
     vue-hot-reload-api "^2.3.0"
     vue-style-loader "^4.1.0"
+
+vue-mugen-scroll@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.npm.taobao.org/vue-mugen-scroll/download/vue-mugen-scroll-0.2.6.tgz#f1c90a8363a8966b3217524f3e97f76b0b817303"
+  integrity sha1-8ckKg2OolmsyF1JPPpf3awuBcwM=
+  dependencies:
+    element-in-view "^0.1.0"
+    throttleit "^1.0.0"
 
 vue-router@^3.1.5:
   version "3.1.5"
