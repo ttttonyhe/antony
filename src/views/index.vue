@@ -36,7 +36,7 @@
               <div class="list-show-div">
                 <!-- 置顶文章提示 -->
                 <em class="article-list-type1 sticky-one-tag" v-if="post.sticky">
-                  <i class="czs-arrow-up-l" style="font-size: 14px;font-weight: 600;"></i> 置顶
+                  <i class="ri-arrow-up-circle-line"></i> 置顶
                 </em>
                 <!-- 置顶文章提示 -->
                 <em

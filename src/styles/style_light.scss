@@ -2484,7 +2484,7 @@ pre {
 .article-list-tags a:nth-child(1) {
     color: #8590a6 !important;
     padding: 5px 15px 7px 15px;
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: .1px
 }
 
@@ -2727,7 +2727,7 @@ pre {
     }
 
     padding: 5.5px 15px 5.5px 15px;
-    font-weight: 500;
+    font-weight: 600;
     margin-right: 3px;
     letter-spacing: .1px;
     border-radius: 100px;
@@ -2743,6 +2743,15 @@ pre {
     color: rgb(255, 152, 0) !important;
     background: rgba(255, 193, 7, 0.35) !important;
     margin-right: 6px;
+    font-weight: 600;
+
+    i {
+        font-size: 17px;
+        font-weight: 600;
+        display: inline-block;
+        vertical-align: text-top;
+        margin-top: -5px;
+    }
 }
 
 .display-author {
@@ -2849,6 +2858,10 @@ input:focus {
         vertical-align: text-top;
         margin-top: -1px;
     }
+}
+
+.cate-back-en {
+    margin: 21.5px 0px 0px 13px
 }
 
 .cate-link-item-p {

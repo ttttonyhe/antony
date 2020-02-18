@@ -1621,6 +1621,14 @@ babel-plugin-dynamic-import-node@^2.3.0:
   dependencies:
     object.assign "^4.1.0"
 
+babel-runtime@^6.0.0:
+  version "6.26.0"
+  resolved "https://registry.npm.taobao.org/babel-runtime/download/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
+  integrity sha1-llxwWGaOgrVde/4E/yM3vItWR/4=
+  dependencies:
+    core-js "^2.4.0"
+    regenerator-runtime "^0.11.0"
+
 balanced-match@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npm.taobao.org/balanced-match/download/balanced-match-1.0.0.tgz#89b4d199ab2bee49de164ea02b89ce462d71b767"
@@ -1655,6 +1663,13 @@ bcrypt-pbkdf@^1.0.0:
   integrity sha1-pDAdOJtqQ/m2f/PKEaP2Y342Dp4=
   dependencies:
     tweetnacl "^0.14.3"
+
+better-scroll@^1.15.2:
+  version "1.15.2"
+  resolved "https://registry.npm.taobao.org/better-scroll/download/better-scroll-1.15.2.tgz#65ffc6058b8b4ff337b8dfad4bcb334d7699ceb6"
+  integrity sha1-Zf/GBYuLT/M3uN+tS8szTXaZzrY=
+  dependencies:
+    babel-runtime "^6.0.0"
 
 bfj@^6.1.1:
   version "6.1.2"
@@ -2474,6 +2489,11 @@ core-js-compat@^3.6.2, core-js-compat@^3.6.4:
   dependencies:
     browserslist "^4.8.3"
     semver "7.0.0"
+
+core-js@^2.4.0:
+  version "2.6.11"
+  resolved "https://registry.npm.taobao.org/core-js/download/core-js-2.6.11.tgz?cache=0&sync_timestamp=1578957195899&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcore-js%2Fdownload%2Fcore-js-2.6.11.tgz#38831469f9922bded8ee21c9dc46985e0399308c"
+  integrity sha1-OIMUafmSK97Y7iHJ3EaYXgOZMIw=
 
 core-js@^3.6.4:
   version "3.6.4"
@@ -4781,11 +4801,6 @@ isexe@^2.0.0:
   resolved "https://registry.npm.taobao.org/isexe/download/isexe-2.0.0.tgz#e8fbf374dc556ff8947a10dcb0572d633f2cfa10"
   integrity sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=
 
-ismobilejs@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.npm.taobao.org/ismobilejs/download/ismobilejs-1.0.3.tgz#69ec3faccd17dfeeadd471e70955d1e192a46eb6"
-  integrity sha1-aew/rM0X3+6t1HHnCVXR4ZKkbrY=
-
 isobject@^2.0.0:
   version "2.1.0"
   resolved "https://registry.npm.taobao.org/isobject/download/isobject-2.1.0.tgz#f065561096a3f1da2ef46272f815c840d87e0c89"
@@ -5440,11 +5455,6 @@ mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   integrity sha1-MAV0OOrGz3+MR2fzhkjWaX11yQM=
   dependencies:
     minimist "0.0.8"
-
-mobile-device-detect@^0.3.3:
-  version "0.3.3"
-  resolved "https://registry.npm.taobao.org/mobile-device-detect/download/mobile-device-detect-0.3.3.tgz#6880f54c2e838d8dccbfc0d962d01a348db5faad"
-  integrity sha1-aID1TC6DjY3Mv8DZYtAaNI21+q0=
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -6897,6 +6907,11 @@ regenerate@^1.4.0:
   resolved "https://registry.npm.taobao.org/regenerate/download/regenerate-1.4.0.tgz#4a856ec4b56e4077c557589cae85e7a4c8869a11"
   integrity sha1-SoVuxLVuQHfFV1icroXnpMiGmhE=
 
+regenerator-runtime@^0.11.0:
+  version "0.11.1"
+  resolved "https://registry.npm.taobao.org/regenerator-runtime/download/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
+  integrity sha1-vgWtf5v30i4Fb5cmzuUBf78Z4uk=
+
 regenerator-runtime@^0.13.2:
   version "0.13.3"
   resolved "https://registry.npm.taobao.org/regenerator-runtime/download/regenerator-runtime-0.13.3.tgz#7cf6a77d8f5c6f60eb73c5fc1955b2ceb01e6bf5"
@@ -7900,11 +7915,6 @@ tar@^2.0.0:
     fstream "^1.0.12"
     inherits "2"
 
-tb-skeleton@^0.3.6:
-  version "0.3.6"
-  resolved "https://registry.npm.taobao.org/tb-skeleton/download/tb-skeleton-0.3.6.tgz#51ef0a47da9f7751b997003d3ed5691287035d31"
-  integrity sha1-Ue8KR9qfd1G5lwA9PtVpEocDXTE=
-
 terser-webpack-plugin@^1.4.3:
   version "1.4.3"
   resolved "https://registry.npm.taobao.org/terser-webpack-plugin/download/terser-webpack-plugin-1.4.3.tgz#5ecaf2dbdc5fb99745fd06791f46fc9ddb1c9a7c"
@@ -8387,6 +8397,11 @@ vue-cookie@^1.1.4:
   dependencies:
     tiny-cookie "^1.0"
 
+vue-dragscroll@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npm.taobao.org/vue-dragscroll/download/vue-dragscroll-2.0.1.tgz#46646ae36ffec9d2c1c40f5f14e0af1fc81ece81"
+  integrity sha1-RmRq42/+ydLBxA9fFOCvH8gezoE=
+
 vue-eslint-parser@^7.0.0:
   version "7.0.0"
   resolved "https://registry.npm.taobao.org/vue-eslint-parser/download/vue-eslint-parser-7.0.0.tgz#a4ed2669f87179dedd06afdd8736acbb3a3864d6"
@@ -8411,6 +8426,11 @@ vue-go-top-button@^1.0.4:
   dependencies:
     vue "^2.6.9"
 
+vue-handy-scroll@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.npm.taobao.org/vue-handy-scroll/download/vue-handy-scroll-1.0.1.tgz#176434912c12435c89ec174ebaffda606275a121"
+  integrity sha1-F2Q0kSwSQ1yJ7BdOuv/aYGJ1oSE=
+
 vue-head@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npm.taobao.org/vue-head/download/vue-head-2.2.0.tgz#9e3a141d5a011599a3f6d7adb42a65c428cf73e1"
@@ -8420,16 +8440,6 @@ vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.npm.taobao.org/vue-hot-reload-api/download/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"
   integrity sha1-UylVzB6yCKPZkLOp+acFdGV+CPI=
-
-vue-infinite-loading@^2.4.4:
-  version "2.4.4"
-  resolved "https://registry.npm.taobao.org/vue-infinite-loading/download/vue-infinite-loading-2.4.4.tgz#8a9defb9ceeea797c057cb36bdf558a4b2ce409f"
-  integrity sha1-ip3vuc7up5fAV8s2vfVYpLLOQJ8=
-
-vue-infinite-scroll@^2.0.2:
-  version "2.0.2"
-  resolved "https://registry.npm.taobao.org/vue-infinite-scroll/download/vue-infinite-scroll-2.0.2.tgz#ca37a91fe92ee0ad3b74acf8682c00917144b711"
-  integrity sha1-yjepH+ku4K07dKz4aCwAkXFEtxE=
 
 vue-loader@^15.8.3:
   version "15.9.0"

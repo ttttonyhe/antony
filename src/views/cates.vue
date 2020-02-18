@@ -10,7 +10,10 @@
               </div>
               <div>
                 <router-link to="/">
-                  <b-button variant="primary" class="cate-back">
+                  <b-button
+                    variant="primary"
+                    :class="includeChinese(cate.name) ? 'cate-back' : 'cate-back-en'"
+                  >
                     <i class="ri-arrow-left-line"></i> 回到主页
                   </b-button>
                 </router-link>
@@ -40,10 +43,10 @@
               <em class="article-list-type1 sticky-one-tag" v-if="post.sticky">
                 <i class="czs-arrow-up-l" style="font-size: 14px;font-weight: 600;"></i> 置顶
               </em>
-              <em
-                v-if="post.post_categories[0].term_id == 7"
-                class="article-list-type1"
-              ><b>{{ post.post_categories[0].name }}</b>{{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : word.list.cate_tag) }}</em>
+              <em v-if="post.post_categories[0].term_id == 7" class="article-list-type1">
+                <b>{{ post.post_categories[0].name }}</b>
+                {{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : word.list.cate_tag) }}
+              </em>
               <a
                 v-else-if="post.post_categories[0].term_id !== 2 && post.post_categories[0].term_id !== 5 && post.sticky"
                 :href="post.post_categories[0].link"
@@ -98,10 +101,10 @@
                   <em class="article-list-type1 sticky-one-tag" v-if="post.sticky">
                     <i class="czs-arrow-up-l" style="font-size: 14px;font-weight: 600;"></i> 置顶
                   </em>
-                  <em
-                    v-if="post.post_categories[0].term_id == 7"
-                    class="article-list-type1"
-                  ><b>{{ post.post_categories[0].name }}</b>{{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : word.list.cate_tag) }}</em>
+                  <em v-if="post.post_categories[0].term_id == 7" class="article-list-type1">
+                    <b>{{ post.post_categories[0].name }}</b>
+                    {{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : word.list.cate_tag) }}
+                  </em>
                   <a
                     v-else
                     :href="post.post_categories[0].link"
@@ -240,6 +243,14 @@ export default {
               this.paged = 2; //加载完1页后累加页数
             });
         });
+    },
+    // 判断分类目录名称是否包含中文调整「返回主页」按钮位置
+    includeChinese: str => {
+      if (escape(str).indexOf("%u") < 0) {
+        return false;
+      } else {
+        return true;
+      }
     },
     //定义方法
     query_style_list: function(cate, sticky) {
