@@ -44,7 +44,7 @@
         </router-link>
 
         <!-- Contact Dropdown -->
-        <b-dropdown variant="primary" split split-href="https://www.ouorz.com/126" html="关于我">
+        <b-dropdown variant="primary" split split-href="/post/126" html="关于我">
           <b-dropdown-item href="https://www.ouorz.com/comment_manage.html">Comments</b-dropdown-item>
           <b-dropdown-item href="https://github.com/HelipengTony">Github</b-dropdown-item>
           <div class="dropdown-divider"></div>

@@ -42,7 +42,7 @@
                 <em
                   v-if="post.post_categories[0].term_id === 7"
                   class="article-list-type1"
-                  v-html="post.post_categories[0].name + ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : '技术')"
+                  v-html="'<b>' + post.post_categories[0].name + '</b>' +  ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : '技术')"
                 ></em>
                 <div v-else class="article-list-tags">
                   <a :href="post.post_categories[0].link" v-html="post.post_categories[0].name"></a>
@@ -133,7 +133,7 @@
                   <em
                     v-if="post.post_categories[0].term_id === 7"
                     class="article-list-type1"
-                  >{{ post.post_categories[0].name + ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : '无标签') }}</em>
+                  ><b>{{ post.post_categories[0].name }}</b>{{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : '无标签') }}</em>
                   <a
                     v-else
                     :href="post.post_categories[0].link"
@@ -198,7 +198,7 @@
 </template>
 
 <script>
-// import header-top'
+// import header-top
 import headerTop from "../components/top";
 
 // import infinite loading feature

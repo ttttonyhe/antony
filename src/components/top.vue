@@ -2,12 +2,7 @@
   <div id="header_info" class="index-top">
     <nav class="header-nav reveal">
       <img class="header-avatar-top" src="https://static.ouorz.com/t.jpg" />
-      <a
-        style="text-decoration:none;"
-        href="/"
-        class="header-logo"
-        title="TonyHe"
-      >TonyHe</a>
+      <a style="text-decoration:none;" href="/" class="header-logo" title="TonyHe">TonyHe</a>
 
       <p class="lead" style="margin-top: 0px;margin-left:5px">Just A Poor Lifesinger</p>
     </nav>
@@ -66,7 +61,7 @@
     <div>
       <ul class="post_tags">
         <li class="cat-real" v-for="(tag,index) in tages" :key="index">
-          <a :href="tag.link">#{{ tag.name }}</a>
+          <router-link :to="'/tag/' + tag.id">#{{ tag.name }}</router-link>
         </li>
         <li
           class="loading-line"

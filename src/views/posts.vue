@@ -5,7 +5,7 @@
         <!-- 左侧区块 -->
         <div class="single-left" :style="(exist_index ? '' : 'margin-top:-15px')">
           <div class="index-div">
-            <div style="padding:0px 25px" class="single-index">
+            <div class="single-index">
               <h4>
                 <i class="ri-list-check-2"></i>
                 文章引索

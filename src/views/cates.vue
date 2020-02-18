@@ -4,14 +4,19 @@
       <div class="grid-cell" id="grid-cell">
         <div id="header_info">
           <nav class="header-nav reveal">
-            <router-link to="/" class="top1 header-logo cate-name" v-html="cate.name"></router-link>
-
+            <div class="cate-nav">
+              <div>
+                <router-link to="/" class="top1 header-logo cate-name" v-html="cate.name"></router-link>
+              </div>
+              <div>
+                <router-link to="/">
+                  <b-button variant="primary" class="cate-back">
+                    <i class="ri-arrow-left-line"></i> 回到主页
+                  </b-button>
+                </router-link>
+              </div>
+            </div>
             <p class="top2 lead archive-p" v-html="cate.description"></p>
-            <router-link to="/">
-              <b-button variant="primary" class="cate-back">
-                <i class="ri-arrow-left-line"></i> 回到主页
-              </b-button>
-            </router-link>
           </nav>
           <!-- 顶部标题与分类区块 -->
           <template v-if="!loading_stop">
@@ -23,7 +28,6 @@
           <!-- 顶部标题与分类区块 -->
         </div>
         <ul class="article-list">
-
           <li
             :class="'article-list-item reveal index-post-list ' + (post.sticky ? 'sticky-one' : '')"
             v-for="(post,index) in posts"
@@ -39,7 +43,7 @@
               <em
                 v-if="post.post_categories[0].term_id == 7"
                 class="article-list-type1"
-              >{{ post.post_categories[0].name + ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : word.list.cate_tag) }}</em>
+              ><b>{{ post.post_categories[0].name }}</b>{{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : word.list.cate_tag) }}</em>
               <a
                 v-else-if="post.post_categories[0].term_id !== 2 && post.post_categories[0].term_id !== 5 && post.sticky"
                 :href="post.post_categories[0].link"
@@ -97,7 +101,7 @@
                   <em
                     v-if="post.post_categories[0].term_id == 7"
                     class="article-list-type1"
-                  >{{ post.post_categories[0].name + ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : word.list.cate_tag) }}</em>
+                  ><b>{{ post.post_categories[0].name }}</b>{{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : word.list.cate_tag) }}</em>
                   <a
                     v-else
                     :href="post.post_categories[0].link"
@@ -146,7 +150,10 @@
 </template>
 
 <script>
+// import jquery features
 import $ from "jquery";
+
+// import header-top-inside
 import topInside from "../components/topInside";
 
 // import infinite loading feature

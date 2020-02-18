@@ -2314,7 +2314,7 @@ table {
     background: #fff;
     transform: translate(-230px, 80px);
     border-radius: 6px;
-    padding: 20px 0px
+    padding: 15px 0px 20px 0px;
 }
 
 .index-div-next {
@@ -2807,7 +2807,8 @@ input:focus {
 }
 
 .single-index {
-    padding: 0px 25px;
+    padding: 0px 25px 10px 25px;
+    border-bottom: 1px solid #eee;
 
     h4 {
         color: #333;
@@ -2834,11 +2835,14 @@ input:focus {
 .cate-name {
     margin-bottom: -10px;
     text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+    }
 }
 
 .cate-back {
-    position: absolute;
-    transform: translateY(-80px) translateX(180px);
+    margin: 17.5px 0px 0px 13px;
 
     i {
         display: inline-block;
@@ -2847,8 +2851,13 @@ input:focus {
     }
 }
 
-.cate-link-item-p{
+.cate-link-item-p {
     margin: -10px 0px 10px 1px !important;
 }
+
+.cate-nav {
+    display: flex
+}
+
 
 /*# sourceMappingURL=style.css.map */
