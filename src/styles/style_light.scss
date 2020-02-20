@@ -35,8 +35,30 @@ html {
 
 }
 
-html::-webkit-scrollbar {
-    width: 0px
+html {
+
+    /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+    &::-webkit-scrollbar {
+        width: 11px;
+        height: 11px;
+        background-color: #f6f7f8;
+    }
+
+    /*定义滚动条轨道 内阴影+圆角*/
+    &::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: #f6f7f8;
+    }
+
+    /*定义滑块 内阴影+圆角*/
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        background-color: #d9d9d9;
+
+        &:hover {
+            background-color: #c9c9c9;
+        }
+    }
 }
 
 body {
@@ -554,7 +576,7 @@ blockquote {
     padding-left: 20px
 }
 
-hr {
+.article-content hr {
     max-width: 100%;
     height: 50px !important;
     background: url(https://static.ouorz.com/hr.gif) right center no-repeat;
@@ -2488,12 +2510,22 @@ pre {
     letter-spacing: .1px
 }
 
-.content-c p {
-    font-size: 17.5px !important
-}
+.content-c {
+    margin: 15px 0px 10px 0px;
 
-.content-c p img {
-    width: 50px
+    p {
+        color: #777;
+        font-size: 17.5px !important;
+
+        img {
+            width: 50px
+        }
+    }
+
+    a {
+        color: #007bff;
+        margin-left: 5px;
+    }
 }
 
 .mob-header-text {
@@ -2625,11 +2657,11 @@ pre {
     right: 20px;
     position: absolute;
     top: 14.5px;
-    transition: all .2s
+    opacity: 0.8;
 }
 
 .notice-list a:hover {
-    opacity: 0.9
+    opacity: 1.0;
 }
 
 .single-donate {
@@ -2872,5 +2904,27 @@ input:focus {
     display: flex
 }
 
+.archive {
+    h2 {
+        font-size: 30px;
+    }
+
+    h3 {
+        font-size: 22px;
+        margin: 25px 0px 20px 0px;
+    }
+}
+
+.archive-footer {
+    em {
+        color: #999;
+        font-style: normal;
+
+        a {
+            color: #007bff;
+            margin-left: 5px;
+        }
+    }
+}
 
 /*# sourceMappingURL=style.css.map */

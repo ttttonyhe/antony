@@ -37,11 +37,11 @@ const routes = [
     }
   },
   {
-    path: '/friends',
-    name: 'Friends',
-    component: () => import('../views/friends.vue'),
+    path: '/archive',
+    name: 'Archive',
+    component: () => import('../views/archive.vue'),
     meta:{
-      title: 'TonyHe - 友情链接'
+      title: 'TonyHe - 文章归档'
     }
   },
   {
@@ -50,6 +50,14 @@ const routes = [
     component: () => import('../views/donation.vue'),
     meta:{
       title: 'TonyHe - 赞助支持'
+    }
+  },
+  {
+    path: '/comments',
+    name: 'Comments',
+    component: () => import('../views/comments.vue'),
+    meta:{
+      title: 'TonyHe - 留言板'
     }
   }
 ]

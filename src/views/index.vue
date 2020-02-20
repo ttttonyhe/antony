@@ -16,10 +16,11 @@
           <li
             class="article-list-item reveal index-post-list notice-list"
             v-if="notice.visible"
-            uk-tooltip="title:By using this website, you agree to our use of cookies. We use cookies to provide you with a great experience and to help our website run effectively.; pos: left"
+            v-b-tooltip.hover
+            title="By using this website, you agree to our use of cookies. We use cookies to provide you with a great experience and to help our website run effectively."
           >
             <div>By using this website, you agree to our use of cookies. We use cookies to provide you with a great experience and to help our website run effectively.</div>
-            <a @click="discard_notice()">Discard</a>
+            <a @click="discard_notice()" href="#">Discard</a>
           </li>
           <!-- cookies 使用提示 -->
 
