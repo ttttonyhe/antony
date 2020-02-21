@@ -12,8 +12,6 @@ import router from './router'
 
 // Import & Use Bootstrap-Vue Resources
 import BootstrapVue from 'bootstrap-vue'
-import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 
 // Import RemixIcon Stylesheet

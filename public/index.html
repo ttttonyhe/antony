@@ -1,30 +1,44 @@
 <!DOCTYPE html>
 <html lang="zh-cn">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <!-- Description -->
-    <meta name="description" content="Just A Poor Lifesinger">
-    
-    <!-- DNS Prefetch -->
-    <meta http-equiv="x-dns-prefetch-control" content="on" />
-    <link rel="dns-prefetch" href="https://static.ouorz.com" />
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
-    <!-- Keywords -->
-    <meta name="keywords" content="贺莉朋,Tony,TonyHe,博客,个人博客,Personal Blog,blog,wordpress,wordpress theme,wordpress theme tony,tony,tonyhe,snapaper,eugrade,snapaper.com,eugrade.com,zeo.im" />
+  <!-- Description -->
+  <meta name="description" content="Just A Poor Lifesinger">
 
-    <!-- Favicon -->
-    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+  <!-- DNS Prefetch -->
+  <meta http-equiv="x-dns-prefetch-control" content="on" />
+  <link rel="dns-prefetch" href="https://static.ouorz.com" />
 
-    <title><%= htmlWebpackPlugin.options.title %></title>
-  </head>
-  <body>
-    <noscript>
-      <strong>本站点需要您的浏览器支持并开启 JavaScript 功能来正常运转</strong>
-    </noscript>
-    <div id="app"></div>
-    <!--  Built Files -->
-  </body>
+  <!-- Keywords -->
+  <meta name="keywords"
+    content="贺莉朋,Tony,TonyHe,博客,个人博客,Personal Blog,blog,wordpress,wordpress theme,wordpress theme tony,tony,tonyhe,snapaper,eugrade,snapaper.com,eugrade.com,zeo.im" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+
+  <!-- Load required Bootstrap and BootstrapVue CSS -->
+  <link type="text/css" rel="stylesheet" href="https://static.ouorz.com/bootstrap.min.css" />
+  <link type="text/css" rel="stylesheet" href="https://static.ouorz.com/bootstrap-vue.min.css" />
+
+  <script type="text/javascript" src="https://static.ouorz.com/polyfill.min.js"></script>
+
+  <title><%= htmlWebpackPlugin.options.title %></title>
+</head>
+
+<body>
+  <noscript>
+    <strong>本站点需要您的浏览器支持并开启 JavaScript 功能来正常运转</strong>
+  </noscript>
+  <div id="app"></div>
+  <!--  Built Files -->
+  <script type="text/javascript" src="https://static.ouorz.com/vue.runtime.min.js"></script>
+  <script type="text/javascript" src="https://static.ouorz.com/vue-router.min.js"></script>
+  <script type="text/javascript" src="https://static.ouorz.com/axios.min.js"></script>
+  <script type="text/javascript" src="https://static.ouorz.com/bootstrap-vue.min.js"></script>
+</body>
+
 </html>

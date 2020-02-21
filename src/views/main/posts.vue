@@ -3,7 +3,7 @@
     <div class="grid grid-centered">
       <div class="grid-cell" id="grid-cell">
         <!-- 左侧区块 -->
-        <div class="single-left" :style="(exist_index ? '' : 'margin-top:-15px')">
+        <div class="single-left" :style="(exist_index ? '' : 'margin-top:-15px')" v-if="!loading">
           <div class="index-div">
             <div class="single-index">
               <h4>
@@ -13,44 +13,41 @@
             </div>
             <ul id="article-index" class="index-ul"></ul>
           </div>
-
-          <template v-if="!loading">
-            <div>
-              <div
-                class="index-div-next"
-                v-if="(!!post_prenext.prev && post_prenext.prev[0] !== null && post_prenext.prev[2] !== 2 && post_prenext.prev[2] !== 5 && post_prenext.prev[2] !== 58)"
-              >
-                <h4>
-                  <i class="czs-hande-vertical"></i>
-                  {{ $t('lang.post.prev') }}
-                </h4>
-                <p>
-                  <a :href="post_prenext.prev[0]" v-html="post_prenext.prev[1]"></a>
-                </p>
-              </div>
-              <div
-                class="index-div-next"
-                v-if="(!!post_prenext.next && post_prenext.next[0] !== null && post_prenext.next[2] !== 2 && post_prenext.next[2] !== 5 && post_prenext.next[2] !== 58)"
-              >
-                <h4>
-                  <i class="czs-hand-horizontal"></i>
-                  {{ $t('lang.post.next') }}
-                </h4>
-                <p>
-                  <a :href="post_prenext.next[0]" v-html="post_prenext.next[1]"></a>
-                </p>
-              </div>
-              <div
-                class="index-div-next single-donate"
-                v-else-if="!!post_prenext.next && post_prenext.next[0] !== null && post_prenext.next[2] !== 74"
-              >
-                <a class="single-donate-a" href="https://www.ouorz.com/donation.html">
-                  {{ $t('lang.post.donation') }}
-                  <i class="ri-hand-heart-line"></i>
-                </a>
-              </div>
+          <div>
+            <div
+              class="index-div-next"
+              v-if="(!!post_prenext.prev && post_prenext.prev[0] !== null && post_prenext.prev[2] !== 2 && post_prenext.prev[2] !== 5 && post_prenext.prev[2] !== 58)"
+            >
+              <h4>
+                <i class="czs-hande-vertical"></i>
+                {{ $t('lang.post.prev') }}
+              </h4>
+              <p>
+                <a :href="post_prenext.prev[0]" v-html="post_prenext.prev[1]"></a>
+              </p>
             </div>
-          </template>
+            <div
+              class="index-div-next"
+              v-if="(!!post_prenext.next && post_prenext.next[0] !== null && post_prenext.next[2] !== 2 && post_prenext.next[2] !== 5 && post_prenext.next[2] !== 58)"
+            >
+              <h4>
+                <i class="czs-hand-horizontal"></i>
+                {{ $t('lang.post.next') }}
+              </h4>
+              <p>
+                <a :href="post_prenext.next[0]" v-html="post_prenext.next[1]"></a>
+              </p>
+            </div>
+            <div
+              class="index-div-next single-donate"
+              v-else-if="!!post_prenext.next && post_prenext.next[0] !== null && post_prenext.next[2] !== 74"
+            >
+              <a class="single-donate-a" href="https://www.ouorz.com/donation.html">
+                {{ $t('lang.post.donation') }}
+                <i class="ri-hand-heart-line"></i>
+              </a>
+            </div>
+          </div>
         </div>
         <!-- 左侧区块 -->
 
@@ -61,98 +58,118 @@
         <!-- 阅读进度条 -->
 
         <article class="article reveal">
-          <div id="load">
-            <!-- 文章顶部 -->
-            <div class="article-header">
-              <span class="badge badge-pill badge-danger single-badge">
-                <router-link to="/" style="text-decoration:none">
-                  <i class="ri-article-line"></i>
-                  {{ $t('lang.post.des') }}
-                </router-link>
-              </span>
-              <span class="badge badge-pill badge-danger single-badge" style="margin-left: 10px;">
-                <a :href="cate_url" class="post-header" v-html="cate">{{ $t('lang.post.cate') }}</a>
-              </span>
-              <span
-                class="badge badge-pill badge-danger single-badge"
-                style="margin-left: 10px;"
-                v-b-tooltip.hover
-                :title="$t('lang.post.estimate')"
-              >
-                <a
-                  :href="cate_url"
-                  class="post-header"
-                  v-html="posts.post_metas.reading.time_required + ' mins'"
-                >{{ $t('lang.post.readingTime') }}</a>
-              </span>
-              <!-- 文章标题 -->
-              <h2 class="single-h2" v-html="posts.post_metas.title"></h2>
-              <!-- 文章标题 -->
-
-              <!-- 底部信息 -->
-              <div class="article-list-footer">
-                <span class="article-list-date">{{ posts.post_date }}</span>
-                <span class="article-list-divider">/</span>
-                <span class="article-list-minutes">{{ posts.post_metas.views }}&nbsp;Views</span>
-                <span class="article-list-divider">/</span>
-                <span
-                  class="article-list-minutes"
-                >{{ posts.post_metas.reading.word_count}} &nbsp;Words</span>
+          <template v-if="loading">
+            <div class="skeleton">
+              <div class="skeleton-body" style="margin: 0px;">
+                <div class="skeleton-title" style="width: 100%;"></div>
+                <div class="skeleton-content" style="width: 70%;margin-top: 30px;"></div>
               </div>
-              <!-- 底部信息 -->
-
-              <div class="single-line"></div>
             </div>
-            <!-- 文章顶部 -->
+            <div class="skeleton" style="padding: 5px 10px;width: 80%;">
+              <div class="skeleton-body" style="margin: 0px;">
+                <div class="skeleton-content" style="width: 70%;margin: 0px;"></div>
+              </div>
+            </div>
+            <div class="skeleton">
+              <div class="skeleton-body" style="margin: 0px;">
+                <div class="skeleton-content" style="width: 60%;margin: 0px;"></div>
+              </div>
+            </div>
+          </template>
+          <template v-else>
+            <div id="load">
+              <!-- 文章顶部 -->
+              <div class="article-header">
+                <span class="badge badge-pill badge-danger single-badge">
+                  <router-link to="/" style="text-decoration:none">
+                    <i class="ri-article-line"></i>
+                    {{ $t('lang.post.des') }}
+                  </router-link>
+                </span>
+                <span class="badge badge-pill badge-danger single-badge" style="margin-left: 10px;">
+                  <a :href="cate_url" class="post-header" v-html="cate">{{ $t('lang.post.cate') }}</a>
+                </span>
+                <span
+                  class="badge badge-pill badge-danger single-badge"
+                  style="margin-left: 10px;"
+                  v-b-tooltip.hover
+                  :title="$t('lang.post.estimate')"
+                >
+                  <a
+                    :href="cate_url"
+                    class="post-header"
+                    v-html="posts.post_metas.reading.time_required + ' mins'"
+                  >{{ $t('lang.post.readingTime') }}</a>
+                </span>
+                <!-- 文章标题 -->
+                <h2 class="single-h2" v-html="posts.post_metas.title"></h2>
+                <!-- 文章标题 -->
 
-            <!-- 文章内容 -->
-            <div class="article-content" v-html="posts.content.rendered"></div>
-            <!-- 文章内容 -->
+                <!-- 底部信息 -->
+                <div class="article-list-footer">
+                  <span class="article-list-date">{{ posts.post_date }}</span>
+                  <span class="article-list-divider">/</span>
+                  <span class="article-list-minutes">{{ posts.post_metas.views }}&nbsp;Views</span>
+                  <span class="article-list-divider">/</span>
+                  <span
+                    class="article-list-minutes"
+                  >{{ posts.post_metas.reading.word_count}} &nbsp;Words</span>
+                </div>
+                <!-- 底部信息 -->
 
-            <!-- 文章标签 -->
-            <div
-              style="text-align: left;margin: 60px 0px 40px 8px;border-radius: 6px;"
-              v-if="post_tags.length"
-            >
-              <ul
-                class="post_tags"
-                style="margin: 0;padding: 0px;width: 100%;padding-bottom: 15px;"
+                <div class="single-line"></div>
+              </div>
+              <!-- 文章顶部 -->
+
+              <!-- 文章内容 -->
+              <div class="article-content" v-html="posts.content.rendered"></div>
+              <!-- 文章内容 -->
+
+              <!-- 文章标签 -->
+              <div
+                style="text-align: left;margin: 60px 0px 40px 8px;border-radius: 6px;"
+                v-if="post_tags.length"
               >
-                <li
-                  class="cat-real"
-                  style="display: inline-block;color: rgb(102, 102, 102);font-size: 1.1rem;font-weight: 600;margin: 0px;letter-spacing: 1px;"
+                <ul
+                  class="post_tags"
+                  style="margin: 0;padding: 0px;width: 100%;padding-bottom: 15px;"
                 >
-                  <a
-                    style="background-color: #e7f3ff;color: #2f94fe;padding: 1px 12px 1px;border-radius: 4px;font-size: .9rem;"
-                  >{{ $t('lang.post.tag') }}</a>
-                </li>
-                <li
-                  class="cat-real"
-                  style="display: inline-block;"
-                  v-for="(tag,index) in post_tags"
-                  :key="index"
-                >
-                  <a
-                    :href="tag.url"
-                    target="_blank"
-                    v-html="tag.name"
-                    style="font-size: .9rem;border-radius: 4px;padding: 1px 12px 1px;"
-                  ></a>
-                </li>
-              </ul>
-            </div>
-            <!-- 文章标签 -->
+                  <li
+                    class="cat-real"
+                    style="display: inline-block;color: rgb(102, 102, 102);font-size: 1.1rem;font-weight: 600;margin: 0px;letter-spacing: 1px;"
+                  >
+                    <a
+                      style="background-color: #e7f3ff;color: #2f94fe;padding: 1px 12px 1px;border-radius: 4px;font-size: .9rem;"
+                    >{{ $t('lang.post.tag') }}</a>
+                  </li>
+                  <li
+                    class="cat-real"
+                    style="display: inline-block;"
+                    v-for="(tag,index) in post_tags"
+                    :key="index"
+                  >
+                    <a
+                      :href="tag.url"
+                      target="_blank"
+                      v-html="tag.name"
+                      style="font-size: .9rem;border-radius: 4px;padding: 1px 12px 1px;"
+                    ></a>
+                  </li>
+                </ul>
+              </div>
+              <!-- 文章标签 -->
 
-            <!-- 文章评论 -->
-            <div class="article-comments" id="article-comments" style="margin-top:50px">
-              <iframe
-                :src="'https://www.ouorz.com/wp-content/themes/peg/comm/index.html?id=' + this.$route.params.id"
-                style="width: 100%;height: -webkit-fill-available;"
-                frameborder="0"
-              ></iframe>
+              <!-- 文章评论 -->
+              <div class="article-comments" id="article-comments" style="margin-top:50px">
+                <iframe
+                  :src="'https://www.ouorz.com/wp-content/themes/peg/comm/index.html?id=' + this.$route.params.id"
+                  style="width: 100%;height: -webkit-fill-available;"
+                  frameborder="0"
+                ></iframe>
+              </div>
+              <!-- 文章评论 -->
             </div>
-            <!-- 文章评论 -->
-          </div>
+          </template>
         </article>
         <!-- 文章主体 -->
       </div>
@@ -211,7 +228,7 @@ export default {
         highlightCode();
 
         // 手动访问一遍以增加访问量 2333
-        this.axios.get("https://www.ouorz.com/" + this.$route.params.id);
+        this.axios.get("https://www.ouorz.com/post/" + this.$route.params.id);
       });
   },
   methods: {
@@ -383,7 +400,9 @@ export default {
     // 页面内容变化时执行代码渲染
     highlightCode();
     // 夜间加载完毕改变 title
-    document.title = "TonyHe - " + this.posts.post_metas.title;
+    if (this.posts.length) {
+      document.title = "TonyHe - " + this.posts.post_metas.title;
+    }
   }
 };
 </script>

@@ -80,6 +80,8 @@ export default {
         this.page.views = this.posts.post_metas.views;
         this.page.date = this.posts.post_date;
         this.loading = false;
+        // 手动访问一遍以增加访问量 2333
+        this.axios.get("https://www.ouorz.com/comment.html");
       });
   }
 };

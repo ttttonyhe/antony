@@ -7,7 +7,7 @@ const routes = [
   {
     path: '/',
     name: 'Index',
-    component: () => import('../views/index.vue'),
+    component: resolve => require(['@/views/index'], resolve),
     meta:{
       title: 'TonyHe - Just A Poor Lifesinger'
     }
@@ -15,7 +15,7 @@ const routes = [
   {
     path: '/post/:id',
     name: 'Post',
-    component: () => import('../views/main/posts.vue'),
+    component: resolve => require(['@/views/main/posts'], resolve),
     meta:{
       title: 'TonyHe - 文章内容'
     }
@@ -23,7 +23,7 @@ const routes = [
   {
     path: '/cate/:id',
     name: 'Cate',
-    component: () => import('../views/main/cates.vue'),
+    component: resolve => require(['@/views/main/cates'], resolve),
     meta:{
       title: 'TonyHe - 分类文章'
     }
@@ -31,7 +31,7 @@ const routes = [
   {
     path: '/tag/:id',
     name: 'Tag',
-    component: () => import('../views/main/tags.vue'),
+    component: resolve => require(['@/views/main/tags'], resolve),
     meta:{
       title: 'TonyHe - 标签文章'
     }
@@ -39,7 +39,7 @@ const routes = [
   {
     path: '/archive',
     name: 'Archive',
-    component: () => import('../views/main/archive.vue'),
+    component: resolve => require(['@/views/main/archive'], resolve),
     meta:{
       title: 'TonyHe - 文章归档'
     }
@@ -47,7 +47,7 @@ const routes = [
   {
     path: '/page/:id',
     name: 'Page',
-    component: () => import('../views/main/page.vue'),
+    component: resolve => require(['@/views/main/page'], resolve),
     meta:{
       title: 'TonyHe - 留言板'
     }
@@ -55,7 +55,7 @@ const routes = [
   {
     path: '/donation',
     name: 'Donation',
-    component: () => import('../views/complement/donation.vue'),
+    component: resolve => require(['@/views/complement/donation'], resolve),
     meta:{
       title: 'TonyHe - 赞助支持'
     }
@@ -63,7 +63,7 @@ const routes = [
   {
     path: '/comments',
     name: 'Comments',
-    component: () => import('../views/complement/comments.vue'),
+    component: resolve => require(['@/views/complement/comments'], resolve),
     meta:{
       title: 'TonyHe - 全站评论'
     }
@@ -71,7 +71,7 @@ const routes = [
   {
     path: '/music',
     name: 'Music',
-    component: () => import('../views/complement/music.vue'),
+    component: resolve => require(['@/views/complement/music'], resolve),
     meta:{
       title: 'TonyHe - 网易云音乐'
     }
@@ -80,7 +80,7 @@ const routes = [
 
 const router = new VueRouter({
   mode: 'history',
-  base: process.env.BASE_URL,
+  base: '/',
   routes
 })
 

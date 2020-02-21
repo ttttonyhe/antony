@@ -10,6 +10,7 @@
   "dependencies": {
     "axios": "^0.19.2",
     "bootstrap-vue": "^2.4.2",
+    "compression-webpack-plugin": "^3.1.0",
     "core-js": "^3.6.4",
     "highlight.js": "^9.18.1",
     "jquery": "^3.4.1",
@@ -17,14 +18,14 @@
     "nprogress": "^0.2.0",
     "qs": "^6.9.1",
     "remixicon": "^2.3.0",
+    "terser-webpack-plugin": "^2.3.5",
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
     "vue-cookie": "^1.1.4",
     "vue-go-top-button": "^1.0.4",
     "vue-head": "^2.2.0",
     "vue-i18n": "^8.15.3",
-    "vue-mugen-scroll": "^0.2.6",
-    "vue-router": "^3.1.5"
+    "vue-mugen-scroll": "^0.2.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.2.0",
