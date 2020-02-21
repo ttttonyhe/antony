@@ -197,7 +197,7 @@ export default {
     loadCatePage: function(cateId) {
       //获取当前分类信息
       this.axios
-        .get("https://www.ouorz.com/wp-json/wp/v2/categories/" + cateId)
+        .get("https://blog.ouorz.com/wp-json/wp/v2/categories/" + cateId)
         .then(response => {
           this.cate = response.data;
         })
@@ -207,7 +207,7 @@ export default {
           //获取文章列表
           this.axios
             .get(
-              "https://www.ouorz.com/wp-json/wp/v2/posts?sticky=1&categories=" +
+              "https://blog.ouorz.com/wp-json/wp/v2/posts?sticky=1&categories=" +
                 cateId
             )
             .then(res_sticky => {
@@ -222,7 +222,7 @@ export default {
 
               this.axios
                 .get(
-                  "https://www.ouorz.com/wp-json/wp/v2/posts?sticky=0&categories=" +
+                  "https://blog.ouorz.com/wp-json/wp/v2/posts?sticky=0&categories=" +
                     cateId +
                     "&exclude=" +
                     this.posts_id_sticky +
@@ -264,7 +264,7 @@ export default {
       //加载下一页文章列表
       this.axios
         .get(
-          "https://www.ouorz.com/wp-json/wp/v2/posts?sticky=0&exclude=" +
+          "https://blog.ouorz.com/wp-json/wp/v2/posts?sticky=0&exclude=" +
             this.posts_id_sticky +
             "&per_page=10&page=" +
             this.paged +

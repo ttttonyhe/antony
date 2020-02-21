@@ -96,14 +96,14 @@
               <p class="page-p donate-p" v-if="english">
                 The following list will not be updated automatically, please
                 <a
-                  href="https://www.ouorz.com/126#in10"
+                  href="https://blog.ouorz.com/126#in10"
                   target="_blank"
                 >contact me</a> after your payment. The donor's name will be kept on the list below, thank you very much for your support.
               </p>
               <p class="page-p donate-p" v-else>
                 赞助列表将不会自动更新，完成赞助支付后请及时通过社交软件/Email/站内评论
                 <a
-                  href="https://www.ouorz.com/126#in10"
+                  href="https://blog.ouorz.com/126#in10"
                   target="_blank"
                 >与我联系</a>。所有赞助者的名字都会被记录在以下列表，感谢支持！
               </p>
@@ -148,7 +148,7 @@ export default {
   },
   created() {
     this.axios
-      .get("https://www.ouorz.com/wp-content/themes/peg/donors.json")
+      .get("https://blog.ouorz.com/wp-content/themes/peg/donors.json")
       .then(response => {
         this.donors = response.data.donors;
       })

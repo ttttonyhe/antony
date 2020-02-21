@@ -42,10 +42,10 @@
               class="index-div-next single-donate"
               v-else-if="!!post_prenext.next && post_prenext.next[0] !== null && post_prenext.next[2] !== 74"
             >
-              <a class="single-donate-a" href="https://www.ouorz.com/donation.html">
+              <router-link class="single-donate-a" to="/donation">
                 {{ $t('lang.post.donation') }}
                 <i class="ri-hand-heart-line"></i>
-              </a>
+              </router-link>
             </div>
           </div>
         </div>
@@ -162,7 +162,7 @@
               <!-- 文章评论 -->
               <div class="article-comments" id="article-comments" style="margin-top:50px">
                 <iframe
-                  :src="'https://www.ouorz.com/wp-content/themes/peg/comm/index.html?id=' + this.$route.params.id"
+                  :src="'https://blog.ouorz.com/wp-content/themes/peg/comm/index.html?id=' + this.$route.params.id"
                   style="width: 100%;height: -webkit-fill-available;"
                   frameborder="0"
                 ></iframe>
@@ -209,7 +209,7 @@ export default {
   created() {
     //获取文章
     this.axios
-      .get("https://www.ouorz.com/wp-json/wp/v2/posts/" + this.$route.params.id)
+      .get("https://blog.ouorz.com/wp-json/wp/v2/posts/" + this.$route.params.id)
       .then(response => {
         this.posts = response.data;
       })
@@ -228,7 +228,7 @@ export default {
         highlightCode();
 
         // 手动访问一遍以增加访问量 2333
-        this.axios.get("https://www.ouorz.com/post/" + this.$route.params.id);
+        this.axios.get("https://blog.ouorz.com/post/" + this.$route.params.id);
       });
   },
   methods: {

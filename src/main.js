@@ -12,6 +12,8 @@ import router from './router'
 
 // Import & Use Bootstrap-Vue Resources
 import BootstrapVue from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 
 // Import RemixIcon Stylesheet
@@ -47,10 +49,6 @@ NProgress.configure({
   trickleSpeed: 200,
   minimum: 0.2
 })
-
-// Import & use head meta modification feature
-import VueHead from 'vue-head'
-Vue.use(VueHead)
 
 // Import Global Stylesheet
 import './styles/main.scss'

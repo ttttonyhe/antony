@@ -35,7 +35,7 @@
               <div class="article-content" v-html="page.content"></div>
               <div class="article-comments" id="article-comments">
                 <iframe
-                  :src="'https://www.ouorz.com/wp-content/themes/peg/comm/index.html?id=' + $route.params.id"
+                  :src="'https://blog.ouorz.com/wp-content/themes/peg/comm/index.html?id=' + $route.params.id"
                   style="width: 100%;min-height: 100vh;"
                   frameborder="0"
                 ></iframe>
@@ -67,7 +67,7 @@ export default {
   mounted() {
     //获取文章
     this.axios
-      .get("https://www.ouorz.com/wp-json/wp/v2/pages/" + this.$route.params.id)
+      .get("https://blog.ouorz.com/wp-json/wp/v2/pages/" + this.$route.params.id)
       .then(response => {
         this.posts = response.data;
       })
@@ -81,7 +81,7 @@ export default {
         this.page.date = this.posts.post_date;
         this.loading = false;
         // 手动访问一遍以增加访问量 2333
-        this.axios.get("https://www.ouorz.com/comment.html");
+        this.axios.get("https://blog.ouorz.com/comment.html");
       });
   }
 };

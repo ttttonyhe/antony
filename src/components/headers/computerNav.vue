@@ -6,7 +6,7 @@
         <router-link to="/" style="display: inline-block;">
           <img src="https://static.ouorz.com/t.jpg" />
         </router-link>
-        <a href="https://www.ouorz.com/feed">
+        <a href="https://blog.ouorz.com/feed">
           <b-button variant="light">{{ $t('lang.header.rss') }}</b-button>
         </a>
         <a>
@@ -90,7 +90,7 @@
             <ul v-if="search_loading">
               <template v-if="search_content.length !== 0">
                 <li v-for="(search,index) in search_content" :key="index">
-                  <a :href="search.link">
+                  <a :href="'/post/' + search.id">
                     <h4 v-html="search.title.rendered"></h4>
                     <p v-html="search.post_excerpt.four"></p>
                   </a>
@@ -183,7 +183,7 @@ export default {
 
       var s = this.search_key;
       this.axios
-        .get("https://www.ouorz.com/wp-json/wp/v2/posts?search=" + s)
+        .get("https://blog.ouorz.com/wp-json/wp/v2/posts?search=" + s)
         .then(response => {
           this.search_content = response.data;
           this.loading_ph = false;

@@ -263,7 +263,7 @@ export default {
     highlightCode();
     //获取分类
     this.axios
-      .get("https://www.ouorz.com/wp-json/wp/v2/categories?exclude=1,58")
+      .get("https://blog.ouorz.com/wp-json/wp/v2/categories?exclude=1,58")
       .then(response => {
         this.cates = response.data;
       })
@@ -273,7 +273,7 @@ export default {
         //获取标签
         this.axios
           .get(
-            "https://www.ouorz.com/wp-json/wp/v2/tags?orderby=count&order=desc&per_page=15"
+            "https://blog.ouorz.com/wp-json/wp/v2/tags?orderby=count&order=desc&per_page=15"
           )
           .then(response => {
             this.tages = response.data;
@@ -291,7 +291,7 @@ export default {
     //获取文章列表
     this.axios
       .get(
-        "https://www.ouorz.com/wp-json/wp/v2/posts?sticky=1&" +
+        "https://blog.ouorz.com/wp-json/wp/v2/posts?sticky=1&" +
           paged +
           this.version
       )
@@ -305,7 +305,7 @@ export default {
 
         this.axios
           .get(
-            "https://www.ouorz.com/wp-json/wp/v2/posts?sticky=0&exclude=" +
+            "https://blog.ouorz.com/wp-json/wp/v2/posts?sticky=0&exclude=" +
               this.posts_id_sticky +
               paged +
               this.version
@@ -330,7 +330,7 @@ export default {
       $("#view-text").html("-&nbsp;Loading&nbsp;-");
       this.axios
         .get(
-          "https://www.ouorz.com/wp-json/wp/v2/posts?sticky=0&exclude=" +
+          "https://blog.ouorz.com/wp-json/wp/v2/posts?sticky=0&exclude=" +
             this.posts_id_sticky +
             "&per_page=10&page=" +
             paged +
@@ -360,7 +360,7 @@ export default {
       $("#btn" + this.previewPost).html("全文速览"); //以防未收起上个预览，更改上个预览按钮
       this.previewPost = postId; //准备预览文章 ID
       this.axios
-        .get("https://www.ouorz.com/wp-json/wp/v2/posts/" + postId)
+        .get("https://blog.ouorz.com/wp-json/wp/v2/posts/" + postId)
         .then(response => {
           this.previewPostOpened = postId; //正在预览文章 ID
           if (response.data.length !== 0) {

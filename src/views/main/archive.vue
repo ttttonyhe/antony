@@ -102,7 +102,7 @@ export default {
   },
   mounted() {
     // 获取文章总数
-    this.axios("https://www.ouorz.com/wp-json/wp/v2/posts?per_page=1")
+    this.axios("https://blog.ouorz.com/wp-json/wp/v2/posts?per_page=1")
       .then(post_one => {
         this.post_count = parseInt(
           post_one.data[0].post_total_count.post_count
@@ -112,7 +112,7 @@ export default {
         //获取文章列表
         this.axios
           .get(
-            "https://www.ouorz.com/wp-json/wp/v2/posts?per_page=" +
+            "https://blog.ouorz.com/wp-json/wp/v2/posts?per_page=" +
               this.post_count
           ) //默认以发布时间排序
           .then(response => {

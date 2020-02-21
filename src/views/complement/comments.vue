@@ -48,7 +48,7 @@
                 style="color: rgb(153, 153, 153);font-style: normal;padding: 3px 7px;border-radius: 4px;background: #f1f2f3;margin-left: 5px;"
               >{{ post.email }}</em>
             </div>
-            <a :href="'https://www.ouorz.com/'+post.page_key" style="text-decoration:none">
+            <a :href="'https://blog.ouorz.com/'+post.page_key" style="text-decoration:none">
               <markdown-it-vue class="md-body content-c" :content="post.content" />
             </a>
             <div class="archive-footer">
@@ -93,7 +93,7 @@ export default {
     //获取文章列表
     this.axios
       .get(
-        "https://www.ouorz.com/wp-content/themes/peg/com/data/comments.data.json"
+        "https://blog.ouorz.com/wp-content/themes/peg/com/data/comments.data.json"
       )
       .then(response => {
         this.posts = response.data.reverse();

@@ -41,7 +41,7 @@
         </router-link>
       </li>
       <li class="cat-item cat-item-4 cat-real" style="display: inline-block;">
-        <router-link to="/cate/4" title="To make the world a better place">
+        <router-link to="/cate/7" title="To make the world a better place">
           <div class="header-item-icon-div">
             <i class="ri-code-box-line"></i>
           </div>

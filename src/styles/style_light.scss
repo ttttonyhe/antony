@@ -759,15 +759,18 @@ img {
 }
 
 @media all and (max-width: 767px) {
-    .single-h2{
+    .single-h2 {
         font-size: 23px;
     }
+
     .list-show-div {
         white-space: nowrap;
     }
+
     .donate-switch {
         display: none;
     }
+
     .grid-cell.with-1col {
         width: 100%
     }
@@ -1149,7 +1152,19 @@ img {
         overflow: hidden;
         overflow-x: auto;
         line-height: 1.6;
-        color: #212529;
+
+        // html 单独判断夜间模式，设定旧系统默认样式
+        @media (prefers-color-scheme: dark) {
+            color: #fff !important;
+        }
+
+        @media (prefers-color-scheme: light) {
+            color: #212529;
+        }
+
+        @media (prefers-color-scheme: no-preference) {
+            color: #212529;
+        }
     }
 
     img:hover {
@@ -1762,7 +1777,19 @@ img {
     }
 
     .tony-header-scoll {
-        border-bottom: 1px solid #eee;
+
+        // html 单独判断夜间模式，设定旧系统默认样式
+        @media (prefers-color-scheme: dark) {
+            border-bottom: none !important;
+        }
+
+        @media (prefers-color-scheme: light) {
+            border-bottom: 1px solid #eee;
+        }
+
+        @media (prefers-color-scheme: no-preference) {
+            border-bottom: 1px solid #eee;
+        }
     }
 
     .article {
@@ -2544,7 +2571,20 @@ pre {
 
 .mob-header-text {
     font-size: 1.4rem;
-    color: #333 !important;
+
+    // html 单独判断夜间模式，设定旧系统默认样式
+    @media (prefers-color-scheme: dark) {
+        color: #fff !important;
+    }
+
+    @media (prefers-color-scheme: light) {
+        color: #333 !important;
+    }
+
+    @media (prefers-color-scheme: no-preference) {
+        color: #333 !important;
+    }
+
     font-weight: 600;
     padding-top: 9px;
     letter-spacing: 1px;
@@ -2969,11 +3009,13 @@ input:focus {
     color: #555;
     margin-bottom: 40px;
     line-height: 1.5;
-    a{
+
+    a {
         color: #007bff;
         text-decoration: none;
         transition: all 0s;
-        &:hover{
+
+        &:hover {
             color: rgba(0, 123, 255, 0.77);
         }
     }
@@ -3092,7 +3134,7 @@ input:focus {
     text-align: center;
 }
 
-.index-long{
+.index-long {
     padding-bottom: 10px !important;
     margin-bottom: 20px !important;
 }
