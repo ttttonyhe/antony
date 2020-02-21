@@ -8,7 +8,7 @@
             <div class="single-index">
               <h4>
                 <i class="ri-list-check-2"></i>
-                文章引索
+                {{ $t('lang.post.index') }}
               </h4>
             </div>
             <ul id="article-index" class="index-ul"></ul>
@@ -22,7 +22,7 @@
               >
                 <h4>
                   <i class="czs-hande-vertical"></i>
-                  上一篇
+                  {{ $t('lang.post.prev') }}
                 </h4>
                 <p>
                   <a :href="post_prenext.prev[0]" v-html="post_prenext.prev[1]"></a>
@@ -34,7 +34,7 @@
               >
                 <h4>
                   <i class="czs-hand-horizontal"></i>
-                  下一篇
+                  {{ $t('lang.post.next') }}
                 </h4>
                 <p>
                   <a :href="post_prenext.next[0]" v-html="post_prenext.next[1]"></a>
@@ -45,7 +45,7 @@
                 v-else-if="!!post_prenext.next && post_prenext.next[0] !== null && post_prenext.next[2] !== 74"
               >
                 <a class="single-donate-a" href="https://www.ouorz.com/donation.html">
-                  赞助与赞助列表
+                  {{ $t('lang.post.donation') }}
                   <i class="ri-hand-heart-line"></i>
                 </a>
               </div>
@@ -65,20 +65,25 @@
             <!-- 文章顶部 -->
             <div class="article-header">
               <span class="badge badge-pill badge-danger single-badge">
-                <a href="https://www.ouorz.com" style="text-decoration:none">
+                <router-link to="/" style="text-decoration:none">
                   <i class="ri-article-line"></i>
-                  博客文章
-                </a>
+                  {{ $t('lang.post.des') }}
+                </router-link>
               </span>
               <span class="badge badge-pill badge-danger single-badge" style="margin-left: 10px;">
-                <a :href="cate_url" class="post-header" v-html="cate">分类目录</a>
+                <a :href="cate_url" class="post-header" v-html="cate">{{ $t('lang.post.cate') }}</a>
               </span>
-              <span class="badge badge-pill badge-danger single-badge" style="margin-left: 10px;" v-b-tooltip.hover title="预计阅读时长">
+              <span
+                class="badge badge-pill badge-danger single-badge"
+                style="margin-left: 10px;"
+                v-b-tooltip.hover
+                :title="$t('lang.post.estimate')"
+              >
                 <a
                   :href="cate_url"
                   class="post-header"
                   v-html="posts.post_metas.reading.time_required + ' mins'"
-                >阅读时间</a>
+                >{{ $t('lang.post.readingTime') }}</a>
               </span>
               <!-- 文章标题 -->
               <h2 class="single-h2" v-html="posts.post_metas.title"></h2>
@@ -119,7 +124,7 @@
                 >
                   <a
                     style="background-color: #e7f3ff;color: #2f94fe;padding: 1px 12px 1px;border-radius: 4px;font-size: .9rem;"
-                  >文章标签</a>
+                  >{{ $t('lang.post.tag') }}</a>
                 </li>
                 <li
                   class="cat-real"
@@ -150,7 +155,6 @@
           </div>
         </article>
         <!-- 文章主体 -->
-        
       </div>
     </div>
   </div>
@@ -205,6 +209,9 @@ export default {
 
         $(".real").css("display", "block");
         highlightCode();
+
+        // 手动访问一遍以增加访问量 2333
+        this.axios.get("https://www.ouorz.com/" + this.$route.params.id);
       });
   },
   methods: {

@@ -22,6 +22,7 @@
     "vue-cookie": "^1.1.4",
     "vue-go-top-button": "^1.0.4",
     "vue-head": "^2.2.0",
+    "vue-i18n": "^8.15.3",
     "vue-mugen-scroll": "^0.2.6",
     "vue-router": "^3.1.5"
   },

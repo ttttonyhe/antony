@@ -15,7 +15,7 @@ const routes = [
   {
     path: '/post/:id',
     name: 'Post',
-    component: () => import('../views/posts.vue'),
+    component: () => import('../views/main/posts.vue'),
     meta:{
       title: 'TonyHe - 文章内容'
     }
@@ -23,7 +23,7 @@ const routes = [
   {
     path: '/cate/:id',
     name: 'Cate',
-    component: () => import('../views/cates.vue'),
+    component: () => import('../views/main/cates.vue'),
     meta:{
       title: 'TonyHe - 分类文章'
     }
@@ -31,7 +31,7 @@ const routes = [
   {
     path: '/tag/:id',
     name: 'Tag',
-    component: () => import('../views/tags.vue'),
+    component: () => import('../views/main/tags.vue'),
     meta:{
       title: 'TonyHe - 标签文章'
     }
@@ -39,15 +39,23 @@ const routes = [
   {
     path: '/archive',
     name: 'Archive',
-    component: () => import('../views/archive.vue'),
+    component: () => import('../views/main/archive.vue'),
     meta:{
       title: 'TonyHe - 文章归档'
     }
   },
   {
+    path: '/page/:id',
+    name: 'Page',
+    component: () => import('../views/main/page.vue'),
+    meta:{
+      title: 'TonyHe - 留言板'
+    }
+  },
+  {
     path: '/donation',
     name: 'Donation',
-    component: () => import('../views/donation.vue'),
+    component: () => import('../views/complement/donation.vue'),
     meta:{
       title: 'TonyHe - 赞助支持'
     }
@@ -55,9 +63,17 @@ const routes = [
   {
     path: '/comments',
     name: 'Comments',
-    component: () => import('../views/comments.vue'),
+    component: () => import('../views/complement/comments.vue'),
     meta:{
-      title: 'TonyHe - 留言板'
+      title: 'TonyHe - 全站评论'
+    }
+  },
+  {
+    path: '/music',
+    name: 'Music',
+    component: () => import('../views/complement/music.vue'),
+    meta:{
+      title: 'TonyHe - 网易云音乐'
     }
   }
 ]

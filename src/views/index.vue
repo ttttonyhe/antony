@@ -17,10 +17,10 @@
             class="article-list-item reveal index-post-list notice-list"
             v-if="notice.visible"
             v-b-tooltip.hover
-            title="By using this website, you agree to our use of cookies. We use cookies to provide you with a great experience and to help our website run effectively."
+            :title="$t('lang.index.cookieText')"
           >
-            <div>By using this website, you agree to our use of cookies. We use cookies to provide you with a great experience and to help our website run effectively.</div>
-            <a @click="discard_notice()" href="#">Discard</a>
+            <div>{{ $t('lang.index.cookieText') }}</div>
+            <a @click="discard_notice()" href="#">{{ $t('lang.index.cookie') }}</a>
           </li>
           <!-- cookies 使用提示 -->
 
@@ -37,7 +37,7 @@
               <div class="list-show-div">
                 <!-- 置顶文章提示 -->
                 <em class="article-list-type1 sticky-one-tag" v-if="post.sticky">
-                  <i class="ri-arrow-up-circle-line"></i> 置顶
+                  <i class="ri-arrow-up-circle-line"></i> {{ $t('lang.index.atTop') }}
                 </em>
                 <!-- 置顶文章提示 -->
                 <em
@@ -48,7 +48,7 @@
                 <div v-else class="article-list-tags">
                   <a :href="post.post_categories[0].link" v-html="post.post_categories[0].name"></a>
                   <template v-if="!post.post_tags.length">
-                    <a style="margin-left: 5px;">无标签</a>
+                    <a style="margin-left: 5px;">{{ $t('lang.index.noneTag') }}</a>
                   </template>
                   <template>
                     <a
@@ -65,7 +65,7 @@
                   class="list-show-btn"
                   @click="post.id == previewPostOpened ? closePreview(post.id) : preview(post.id)"
                   :id="'btn'+post.id"
-                >全文速览</button>
+                >{{ $t('lang.index.quickView') }}</button>
               </div>
 
               <a :href="'/post/' + post.id" style="text-decoration: none;">
@@ -128,13 +128,13 @@
                 <div class="article-list-img-right">
                   <!-- 置顶文章提示 -->
                   <em class="article-list-type1 sticky-one-tag" v-if="post.sticky">
-                    <i class="czs-arrow-up-l" style="font-size: 14px;font-weight: 600;"></i> 置顶
+                    <i class="czs-arrow-up-l" style="font-size: 14px;font-weight: 600;"></i> {{ $t('lang.index.atTop') }}
                   </em>
                   <!-- 置顶文章提示 -->
-                  <em
-                    v-if="post.post_categories[0].term_id === 7"
-                    class="article-list-type1"
-                  ><b>{{ post.post_categories[0].name }}</b>{{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : '无标签') }}</em>
+                  <em v-if="post.post_categories[0].term_id === 7" class="article-list-type1">
+                    <b>{{ post.post_categories[0].name }}</b>
+                    {{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : $t('lang.index.noneTag')) }}
+                  </em>
                   <a
                     v-else
                     :href="post.post_categories[0].link"
@@ -172,7 +172,7 @@
                 <span class="article-list-divider">-</span>
                 <span class="article-list-minutes">
                   <i class="ri-contrast-2-line"></i>
-                  状态 | {{ post.post_metas.status ? post.post_metas.status : '无状态' }}
+                  {{ $t('lang.index.mood') }} | {{ post.post_metas.status ? post.post_metas.status : $t('lang.index.noneMood') }}
                 </span>
               </div>
             </template>
@@ -255,7 +255,8 @@ export default {
       loading_end: false,
       notice: {
         visible: false
-      }
+      },
+      lang: "zh-CN"
     };
   },
   mounted() {

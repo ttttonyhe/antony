@@ -1,7 +1,7 @@
 /*
     name: 入口文件
     author: TonyHe
-    update: 15-2-2020
+    update: 21-2-2020
 */
 
 // Import Main Dependencies
@@ -9,8 +9,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
-// Import Site Config
-import config from './config'
 
 // Import & Use Bootstrap-Vue Resources
 import BootstrapVue from 'bootstrap-vue'
@@ -24,6 +22,18 @@ import 'remixicon/fonts/remixicon.css'
 // Making Axios available globally
 import axios from 'axios'
 Vue.prototype.axios = axios
+
+/* Import and configure i18n feature */
+import VueI18n from 'vue-i18n'
+Vue.use(VueI18n)
+// i18n language pack configuration
+const i18n = new VueI18n({
+  locale: 'zh-CN',
+  messages: {
+    'zh-CN': require('./common/lang/zh'),
+    'en-US': require('./common/lang/en')
+  }
+})
 
 // Making Cookies Features to be available globally
 import cookie from 'vue-cookie'
@@ -48,8 +58,6 @@ Vue.use(VueHead)
 import './styles/main.scss'
 
 /* Define Global Variables */
-// Site Configuration
-Vue.prototype.config = config
 // Disable Production Tip
 Vue.config.productionTip = false
 
@@ -68,8 +76,10 @@ router.afterEach(() => {
   NProgress.done();
 })
 
+
 // Vue.js
 new Vue({
+  i18n,
   router,
   render: h => h(App)
 }).$mount('#app')

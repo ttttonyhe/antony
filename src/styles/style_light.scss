@@ -573,7 +573,12 @@ blockquote {
     border-left: 3px solid rgba(0, 0, 0, 0.8);
     font-weight: 400;
     letter-spacing: .01rem;
-    padding-left: 20px
+
+    padding-left: 20px;
+
+    p {
+        color: #777 !important;
+    }
 }
 
 .article-content hr {
@@ -754,6 +759,15 @@ img {
 }
 
 @media all and (max-width: 767px) {
+    .single-h2{
+        font-size: 23px;
+    }
+    .list-show-div {
+        white-space: nowrap;
+    }
+    .donate-switch {
+        display: none;
+    }
     .grid-cell.with-1col {
         width: 100%
     }
@@ -2657,11 +2671,11 @@ pre {
     right: 20px;
     position: absolute;
     top: 14.5px;
-    opacity: 0.8;
+    opacity: 1;
 }
 
 .notice-list a:hover {
-    opacity: 1.0;
+    opacity: .8;
 }
 
 .single-donate {
@@ -2722,7 +2736,7 @@ pre {
 }
 
 .music-view-right {
-    padding: 12.5px 10px 10px 15px !important;
+    padding: 5px 10px 10px 15px !important;
 }
 
 .music-view-img {
@@ -2925,6 +2939,162 @@ input:focus {
             margin-left: 5px;
         }
     }
+}
+
+.comment-article {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+}
+
+.comment-header {
+    text-align: center;
+
+    h2 {
+        letter-spacing: 3px;
+    }
+
+    .single-line {
+        display: inline-block;
+    }
+
+    .page-footer {
+        letter-spacing: .5px;
+    }
+}
+
+.donate-p {
+    margin-top: 10px;
+    letter-spacing: .5px;
+    font-size: 17px;
+    color: #555;
+    margin-bottom: 40px;
+    line-height: 1.5;
+    a{
+        color: #007bff;
+        text-decoration: none;
+        transition: all 0s;
+        &:hover{
+            color: rgba(0, 123, 255, 0.77);
+        }
+    }
+}
+
+.payment-div-1 {
+    flex: 1 1 0%;
+    text-align: center;
+    background: rgb(0, 160, 233);
+    padding: 20px 0px 5px 0px;
+    border-radius: 6px;
+    margin-right: 10px;
+}
+
+.payment-div-2 {
+    text-align: center;
+    padding: 13px 0px 5px 0px;
+    border-radius: 6px;
+    margin-right: 10px;
+    background: rgb(108, 115, 120);
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+
+.page-loading-2 {
+    width: 70%;
+    margin: 0px;
+}
+
+.page-loading-1 {
+    padding: 5px 10px;
+    width: 80%;
+}
+
+.page-loading-3 {
+    width: 70%;
+    margin-top: 30px;
+}
+
+.page-loading-4 {
+    width: 100%;
+}
+
+.page-loading-body {
+    margin: 0px;
+}
+
+.page-loading-5 {
+    width: 60%;
+    margin: 0px;
+}
+
+.donate-load {
+    color: #333;
+}
+
+.donate-title {
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin-bottom: 0px;
+}
+
+.donate-switch {
+    float: right;
+    margin-top: -37.4px;
+    margin-right: 10px;
+
+    i {
+        margin-top: -1px;
+        margin-right: 5px;
+        display: inline-block;
+        vertical-align: text-top;
+    }
+}
+
+.donate-icon {
+    margin: 0px;
+    color: rgb(255, 255, 255);
+    font-size: 70px;
+    margin-bottom: -25px;
+    margin-top: -20px;
+
+    i {
+        font-weight: 300;
+    }
+}
+
+.donate-h4 {
+    font-size: 20px;
+    letter-spacing: 1px;
+    margin: 0px 0px 16px 4.5px;
+    color: #fff;
+}
+
+.donate-paypal {
+    margin: 5px 0px 10px;
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1px;
+
+    i {
+        font-size: 20px;
+        display: inline-block;
+        vertical-align: text-top;
+        margin-top: -2.7px;
+    }
+}
+
+.donate-table {
+    border-color: #eee;
+    border-collapse: collapse;
+    border: 1px solid #eee;
+    line-height: 2;
+    width: 100%;
+    text-align: center;
+}
+
+.index-long{
+    padding-bottom: 10px !important;
+    margin-bottom: 20px !important;
 }
 
 /*# sourceMappingURL=style.css.map */

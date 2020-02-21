@@ -7,17 +7,17 @@
           <nav class="header-nav reveal">
             <div class="cate-nav">
               <div>
-                <router-link to="/" class="top1 header-logo cate-name">全站留言集</router-link>
+                <router-link to="/" class="top1 header-logo cate-name">{{ $t('lang.comments.title') }}</router-link>
               </div>
               <div>
                 <router-link to="/">
                   <b-button variant="primary" class="cate-back">
-                    <i class="ri-arrow-left-line"></i> 回到主页
+                    <i class="ri-arrow-left-line"></i> {{ $t('lang.cate.backHome') }}
                   </b-button>
                 </router-link>
               </div>
             </div>
-            <p class="top2 lead archive-p">全站文章内页评论条段</p>
+            <p class="top2 lead archive-p">{{ $t('lang.comments.des') }}</p>
           </nav>
           <topInside :loading="false" />
           <!-- 顶部标题与分类区块 -->
@@ -37,7 +37,7 @@
           <!-- 加载骨架图 -->
           <li
             v-for="(post,index) in posts"
-            class="article-list-item reveal index-post-list uk-scrollspy-inview"
+            class="article-list-item reveal index-post-list"
             :key="index"
           >
             <div>
@@ -54,12 +54,12 @@
             <div class="archive-footer">
               <em>{{ post.date }}</em>
               <em>
-                <a :href="post.link">查看链接</a>
+                <a :href="post.link">{{ $t('lang.comments.viewLink') }}</a>
               </em>
             </div>
           </li>
           <div class="music-view-more" v-if="!loading">
-            <a href="#">共 {{ posts.length }} 条</a>
+            <a href="#">{{ $t('lang.comments.total') }} {{ posts.length }} {{ $t('lang.comments.line') }}</a>
           </div>
         </ul>
       </div>
@@ -69,7 +69,7 @@
 
 <script>
 // import header-top-inside
-import topInside from "../components/topInside";
+import topInside from "../../components/topInside";
 
 // import markdown features
 import MarkdownItVue from 'markdown-it-vue'
@@ -93,7 +93,7 @@ export default {
     //获取文章列表
     this.axios
       .get(
-        "https://www.ouorz.com/explorer/index.php?user/publicLink&fid=03dcRw0N3q1HCSMX7rfVuID1s6fGezpITuhaoBPWCvvckkqIrKRV2V16_3n3SIk0CK5WuG5M3iuIMXGOddSx6xcqRkEnYOCaCiikgqAX49QBryh4QlTAj8Y8A3TRFfJ4aHTJc-j8E0ooEw&file_name=/comments.data.json"
+        "https://www.ouorz.com/wp-content/themes/peg/com/data/comments.data.json"
       )
       .then(response => {
         this.posts = response.data.reverse();

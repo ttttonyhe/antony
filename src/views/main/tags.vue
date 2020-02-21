@@ -14,12 +14,12 @@
                     variant="primary"
                     :class="includeChinese(cate.name) ? 'cate-back' : 'cate-back-en'"
                   >
-                    <i class="ri-arrow-left-line"></i> 回到主页
+                    <i class="ri-arrow-left-line"></i> {{ $t('lang.cate.backHome') }}
                   </b-button>
                 </router-link>
               </div>
             </div>
-            <p class="top2 lead archive-p" v-html="'文章总数: ' + cate.count"></p>
+            <p class="top2 lead archive-p" v-html="$t('lang.cate.postCount') + ': ' + cate.count"></p>
           </nav>
           <!-- 顶部标题与分类区块 -->
           <template v-if="!loading_stop">
@@ -40,7 +40,7 @@
               v-if="post.post_img.url == false || post.post_categories[0].term_id == 2 || post.post_categories[0].term_id == 5"
             >
               <em class="article-list-type1 sticky-one-tag" v-if="post.sticky">
-                <i class="czs-arrow-up-l" style="font-size: 14px;font-weight: 600;"></i> 置顶
+                <i class="czs-arrow-up-l" style="font-size: 14px;font-weight: 600;"></i> {{ $t('lang.index.atTop') }}
               </em>
               <em v-if="post.post_categories[0].term_id == 7" class="article-list-type1">
                 <b>{{ post.post_categories[0].name }}</b>
@@ -96,7 +96,7 @@
                 ></div>
                 <div class="article-list-img-right">
                   <em class="article-list-type1 sticky-one-tag" v-if="post.sticky">
-                    <i class="czs-arrow-up-l" style="font-size: 14px;font-weight: 600;"></i> 置顶
+                    <i class="czs-arrow-up-l" style="font-size: 14px;font-weight: 600;"></i> {{ $t('lang.index.atTop') }}
                   </em>
                   <em v-if="post.post_categories[0].term_id == 7" class="article-list-type1">
                     <b>{{ post.post_categories[0].name }}</b>
@@ -154,7 +154,7 @@
 import $ from "jquery";
 
 // import header-top-inside
-import topInside from "../components/topInside";
+import topInside from "../../components/topInside";
 
 // import infinite loading feature
 import MugenScroll from "vue-mugen-scroll";

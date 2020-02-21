@@ -7,17 +7,17 @@
           <nav class="header-nav reveal">
             <div class="cate-nav">
               <div>
-                <router-link to="/" class="top1 header-logo cate-name">文章归档</router-link>
+                <router-link to="/" class="top1 header-logo cate-name">{{ $t('lang.cate.archive') }}</router-link>
               </div>
               <div>
                 <router-link to="/">
                   <b-button variant="primary" class="cate-back">
-                    <i class="ri-arrow-left-line"></i> 回到主页
+                    <i class="ri-arrow-left-line"></i> {{ $t('lang.cate.backHome') }}
                   </b-button>
                 </router-link>
               </div>
             </div>
-            <p class="top2 lead archive-p">按照年月归档存放的全站文章</p>
+            <p class="top2 lead archive-p">{{ $t('lang.cate.archiveDes') }}</p>
           </nav>
           <topInside :loading="false" />
           <!-- 顶部标题与分类区块 -->
@@ -83,7 +83,7 @@
 
 <script>
 // import header-top-inside
-import topInside from "../components/topInside";
+import topInside from "../../components/topInside";
 
 export default {
   name: "Archive",

@@ -7,10 +7,10 @@
           <img src="https://static.ouorz.com/t.jpg" />
         </router-link>
         <a href="https://www.ouorz.com/feed">
-          <b-button variant="light">RSS 订阅</b-button>
+          <b-button variant="light">{{ $t('lang.header.rss') }}</b-button>
         </a>
         <a>
-          <b-button variant="light" @click="openSearch">博客搜索</b-button>
+          <b-button variant="light" @click="openSearch">{{ $t('lang.header.search') }}</b-button>
         </a>
       </div>
       <!-- Content Menu -->
@@ -20,10 +20,10 @@
           <img src="https://static.ouorz.com/t.jpg" />
         </router-link>
         <a>
-          <b-button variant="light" @click="openSearch">博客搜索</b-button>
+          <b-button variant="light" @click="openSearch">{{ $t('lang.header.search') }}</b-button>
         </a>
         <a>
-          <b-button variant="light">中/EN</b-button>
+          <b-button variant="light" @click="switchLang">{{ $t('lang.header.lang') }}</b-button>
         </a>
       </div>
       <!-- Index Menu -->
@@ -31,23 +31,24 @@
       <!-- Menu Items -->
       <div class="header-div2">
         <router-link to="/">
-          <b-button variant="light">首页</b-button>
+          <b-button variant="light">{{ $t('lang.header.index') }}</b-button>
         </router-link>
         <router-link to="/archive">
-          <b-button variant="light">归档</b-button>
+          <b-button variant="light">{{ $t('lang.header.archive') }}</b-button>
         </router-link>
-        <router-link to="/comment">
-          <b-button variant="light">留言板</b-button>
+        <router-link to="/page/249">
+          <b-button variant="light">{{ $t('lang.header.comment') }}</b-button>
         </router-link>
         <router-link to="/donation">
-          <b-button variant="light">赞助列表</b-button>
+          <b-button variant="light">{{ $t('lang.header.donation') }}</b-button>
         </router-link>
 
         <!-- Contact Dropdown -->
-        <b-dropdown variant="primary" split split-href="/post/126" html="关于我">
+        <b-dropdown variant="primary" split split-href="/post/126" :html="$t('lang.header.aboutme')">
           <b-dropdown-item href="/comments">Comments</b-dropdown-item>
-          <b-dropdown-item href="https://github.com/HelipengTony">Github</b-dropdown-item>
+           <b-dropdown-item href="/cate/74">English Posts</b-dropdown-item>
           <div class="dropdown-divider"></div>
+          <b-dropdown-item href="https://github.com/HelipengTony">Github</b-dropdown-item>
           <b-dropdown-item
             href="http://wpa.qq.com/msgrd?v=3&amp;uin=36624065&amp;site=qq&amp;menu=yes"
           >QQ</b-dropdown-item>
@@ -68,19 +69,19 @@
         <div class="search-bg" id="search-div">
           <div class="search-div1">
             <h3>
-              搜索内容
+              {{ $t('lang.header.searchDiv.title') }}
               <button
                 type="button"
                 class="btn btn-primary"
                 style="font-weight: 600;padding: 4px 14px;font-size: .9rem;margin-top: 6px;margin-left: 10px;float: right;"
                 @click="closeSearch"
-              >关闭</button>
+              >{{ $t('lang.header.searchDiv.close') }}</button>
             </h3>
-            <p>从博客所有内容中检索所需</p>
+            <p>{{ $t('lang.header.searchDiv.des') }}</p>
             <input
               class="uk-input"
               type="text"
-              placeholder="输入搜索内容并回车 Enter"
+              :placeholder="$t('lang.header.searchDiv.placeholder')"
               v-on:keyup.enter="searchQuery"
               v-model.trim="search_key"
             />
@@ -97,8 +98,8 @@
               </template>
               <template v-else>
                 <li>
-                  <h4 style="color:#777">无匹配文章</h4>
-                  <p>请尝试更换搜索词再试试吧...</p>
+                  <h4 style="color:#777">{{ $t('lang.header.searchDiv.noresult') }}</h4>
+                  <p>{{ $t('lang.header.searchDiv.noresultDes') }}</p>
                 </li>
               </template>
             </ul>
@@ -116,7 +117,10 @@
       <!-- Search -->
     </header>
     <div id="view-div" class="center-info" style="display:none">
-        <p style="font-weight: 600;font-size: 1.2rem;color: #555;" id="view-text">-&nbsp;Posts List&nbsp;-</p>
+      <p
+        style="font-weight: 600;font-size: 1.2rem;color: #555;"
+        id="view-text"
+      >-&nbsp;{{ $t('lang.header.postlist') }}&nbsp;-</p>
     </div>
   </div>
 </template>
@@ -161,7 +165,8 @@ export default {
       search_key: null,
       search_loading: false,
       loading_ph: false,
-      search_open: false
+      search_open: false,
+      lang: "zh-CN"
     };
   },
   methods: {
@@ -194,6 +199,16 @@ export default {
       $("#search_form").attr("class", "search_form_dis");
       $(".search-bg-b").attr("style", "display:none");
       $("#search-div").attr("style", "display:none");
+    },
+    // i18n 切换语言包
+    switchLang: function() {
+      if (this.lang === "zh-CN") {
+        this.lang = "en-US";
+        this.$i18n.locale = this.lang;
+      } else {
+        this.lang = "zh-CN";
+        this.$i18n.locale = this.lang;
+      }
     }
   }
 };
