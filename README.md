@@ -23,7 +23,7 @@
 
 <br/>
 
-### See Also 关联目录
+### See Also 关联项目
 - WordPress Theme Tony
 - [https://github.com/HelipengTony/tony](https://github.com/HelipengTony/tony)
 
