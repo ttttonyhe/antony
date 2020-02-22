@@ -231,6 +231,8 @@ export default {
         $(".real").css("display", "block");
         highlightCode();
 
+        document.title = "TonyHe - " + this.posts.title.rendered;
+
         // 手动访问一遍以增加访问量 2333
         this.axios.get("https://blog.ouorz.com/post/" + this.$route.params.id);
       });
@@ -403,9 +405,9 @@ export default {
     this.createReadingBar();
     // 页面内容变化时执行代码渲染
     highlightCode();
-    // 夜间加载完毕改变 title
+    // 加载完毕改变 title
     if (this.posts.length) {
-      document.title = "TonyHe - " + this.posts.post_metas.title;
+      document.title = "TonyHe - " + this.posts.title.rendered;
     }
   },
   watch: {

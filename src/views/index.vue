@@ -258,7 +258,8 @@ export default {
       notice: {
         visible: false
       },
-      lang: "zh-CN"
+      lang: "zh-CN",
+      listLoading: {}
     };
   },
   mounted() {
@@ -334,7 +335,21 @@ export default {
   methods: {
     //加载下一页文章列表
     new_page: function() {
-      $("#view-text").html("-&nbsp;Loading&nbsp;-");
+      //语言包匹配
+      if (this.$i18n.locale == "zh-CN") {
+        this.listLoading = {
+          loading: "加载中",
+          list: "文章列表",
+          all: "全部文章"
+        };
+      } else {
+        this.listLoading = {
+          loading: "Loading",
+          list: "Posts List",
+          all: "All Posts"
+        };
+      }
+      $("#view-text").html("-&nbsp;" + this.listLoading.loading + "&nbsp;-");
       this.axios
         .get(
           "https://blog.ouorz.com/wp-json/wp/v2/posts?sticky=0&exclude=" +
@@ -346,17 +361,17 @@ export default {
         .then(response => {
           if (response.data.length !== 0) {
             //判断是否最后一页
-            $("#view-text").html("-&nbsp;Posts List&nbsp;-");
+            $("#view-text").html("-&nbsp;" + this.listLoading.list + "&nbsp;-");
             this.posts.push.apply(this.posts, response.data); //拼接在上一页之后
             paged += 1;
           } else {
-            $("#view-text").html("-&nbsp;All Posts&nbsp;-");
+            $("#view-text").html("-&nbsp;" + this.listLoading.list + "&nbsp;-");
             this.loading_first = false;
             this.loading_end = true;
           }
         })
         .catch(() => {
-          $("#view-text").html("-&nbsp;All Posts&nbsp;-");
+          $("#view-text").html("-&nbsp;" + this.listLoading.all + "&nbsp;-");
           paged = 1;
           this.loading_first = false;
           this.loading_end = true;
