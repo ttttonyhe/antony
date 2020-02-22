@@ -48,9 +48,7 @@ module.exports = {
     config.externals({
       vue: 'Vue',
       'vue-router':'VueRouter',
-      'bootstrap-vue':'bootstrap-vue',
-      'axios':'axios',
-      'vue-i18n':'vue-i18n'
+      'axios':'axios'
   })
   },
   css: {

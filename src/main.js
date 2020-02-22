@@ -1,7 +1,7 @@
 /*
     name: 入口文件
     author: TonyHe
-    update: 21-2-2020
+    update: 22-2-2020
 */
 
 // Import Main Dependencies
@@ -9,10 +9,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 
-
-// Import & Use Bootstrap-Vue Resources
-import BootstrapVue from 'bootstrap-vue'
-Vue.use(BootstrapVue)
 
 // Import RemixIcon Stylesheet
 import 'remixicon/fonts/remixicon.css'
