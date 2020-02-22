@@ -205,6 +205,9 @@ export default {
         .finally(() => {
           this.loading_cate = false;
 
+          // 变更标题
+          document.title = "TonyHe - " + this.cate.name;
+          
           //获取文章列表
           this.axios
             .get(
