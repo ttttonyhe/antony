@@ -101,6 +101,10 @@ export default {
     };
   },
   mounted() {
+    //屏蔽错误
+    window.onerror = function() {
+      return true;
+    };
     // 获取文章总数
     this.axios("https://blog.ouorz.com/wp-json/wp/v2/posts?per_page=1")
       .then(post_one => {

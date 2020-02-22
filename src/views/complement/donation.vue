@@ -147,6 +147,10 @@ export default {
     };
   },
   created() {
+    //屏蔽错误
+    window.onerror = function() {
+      return true;
+    };
     this.axios
       .get("https://blog.ouorz.com/wp-content/themes/peg/donors.json")
       .then(response => {

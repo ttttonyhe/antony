@@ -180,6 +180,10 @@ export default {
     };
   },
   created() {
+    //屏蔽错误
+    window.onerror = function() {
+      return true;
+    };
     this.loadCatePage(this.$route.params.id);
   },
   watch: {

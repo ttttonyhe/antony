@@ -27,8 +27,6 @@ import mobileNav from "./components/headers/mobileNav";
 import computerNav from "./components/headers/computerNav";
 import siteFooter from "./components/footer";
 
-window.onerror = function () { return true;}
-
 export default {
   data() {
     return {

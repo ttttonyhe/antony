@@ -9038,11 +9038,6 @@ vue-go-top-button@^1.0.4:
   dependencies:
     vue "^2.6.9"
 
-vue-head@^2.2.0:
-  version "2.2.0"
-  resolved "https://registry.npm.taobao.org/vue-head/download/vue-head-2.2.0.tgz#9e3a141d5a011599a3f6d7adb42a65c428cf73e1"
-  integrity sha1-njoUHVoBFZmj9tettCplxCjPc+E=
-
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
   resolved "https://registry.npm.taobao.org/vue-hot-reload-api/download/vue-hot-reload-api-2.3.4.tgz#532955cc1eb208a3d990b3a9f9a70574657e08f2"

@@ -65,6 +65,10 @@ export default {
     };
   },
   mounted() {
+    //屏蔽错误
+    window.onerror = function() {
+      return true;
+    };
     //获取文章
     this.axios
       .get("https://blog.ouorz.com/wp-json/wp/v2/pages/" + this.$route.params.id)

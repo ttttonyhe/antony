@@ -207,6 +207,10 @@ export default {
     };
   },
   created() {
+    //屏蔽错误
+    window.onerror = function() {
+      return true;
+    };
     //获取文章
     this.axios
       .get("https://blog.ouorz.com/wp-json/wp/v2/posts/" + this.$route.params.id)
@@ -403,6 +407,12 @@ export default {
     if (this.posts.length) {
       document.title = "TonyHe - " + this.posts.post_metas.title;
     }
-  }
+  },
+  watch: {
+    $route() {
+      Object.assign(this.$data, this.$options.data());
+      $(window).unbind('scroll')
+    }
+  },
 };
 </script>

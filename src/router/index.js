@@ -75,6 +75,10 @@ const routes = [
     meta:{
       title: 'TonyHe - 网易云音乐'
     }
+  },
+  {
+    path: "*",
+    redirect: "/"
   }
 ]
 

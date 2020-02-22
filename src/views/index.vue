@@ -37,7 +37,8 @@
               <div class="list-show-div">
                 <!-- 置顶文章提示 -->
                 <em class="article-list-type1 sticky-one-tag" v-if="post.sticky">
-                  <i class="ri-arrow-up-circle-line"></i> {{ $t('lang.index.atTop') }}
+                  <i class="ri-arrow-up-circle-line"></i>
+                  {{ $t('lang.index.atTop') }}
                 </em>
                 <!-- 置顶文章提示 -->
                 <em
@@ -128,7 +129,8 @@
                 <div class="article-list-img-right">
                   <!-- 置顶文章提示 -->
                   <em class="article-list-type1 sticky-one-tag" v-if="post.sticky">
-                    <i class="czs-arrow-up-l" style="font-size: 14px;font-weight: 600;"></i> {{ $t('lang.index.atTop') }}
+                    <i class="czs-arrow-up-l" style="font-size: 14px;font-weight: 600;"></i>
+                    {{ $t('lang.index.atTop') }}
                   </em>
                   <!-- 置顶文章提示 -->
                   <em v-if="post.post_categories[0].term_id === 7" class="article-list-type1">
@@ -260,6 +262,11 @@ export default {
     };
   },
   mounted() {
+    //屏蔽错误
+    window.onerror = function() {
+      return true;
+    };
+
     highlightCode();
     //获取分类
     this.axios

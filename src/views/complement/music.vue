@@ -93,6 +93,10 @@ export default {
     };
   },
   mounted() {
+    //屏蔽错误
+    window.onerror = function() {
+      return true;
+    };
     //获取文章列表
     this.axios
       .get("https://api.imjad.cn/cloudmusic/?type=playlist&id=88891196")
