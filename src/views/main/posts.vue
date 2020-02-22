@@ -148,12 +148,12 @@
                     v-for="(tag,index) in post_tags"
                     :key="index"
                   >
-                    <a
-                      :href="tag.url"
+                    <router-link
+                      :to="'/tag/' + tag.id"
                       target="_blank"
                       v-html="tag.name"
                       style="font-size: .9rem;border-radius: 4px;padding: 1px 12px 1px;"
-                    ></a>
+                    ></router-link>
                   </li>
                 </ul>
               </div>
@@ -213,7 +213,9 @@ export default {
     };
     //获取文章
     this.axios
-      .get("https://blog.ouorz.com/wp-json/wp/v2/posts/" + this.$route.params.id)
+      .get(
+        "https://blog.ouorz.com/wp-json/wp/v2/posts/" + this.$route.params.id
+      )
       .then(response => {
         this.posts = response.data;
       })
@@ -413,8 +415,8 @@ export default {
   watch: {
     $route() {
       Object.assign(this.$data, this.$options.data());
-      $(window).unbind('scroll')
+      $(window).unbind("scroll");
     }
-  },
+  }
 };
 </script>
