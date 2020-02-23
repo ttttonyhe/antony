@@ -14,7 +14,8 @@
                     variant="primary"
                     :class="includeChinese(cate.name) ? 'cate-back' : 'cate-back-en'"
                   >
-                    <i class="ri-arrow-left-line"></i> {{ $t('lang.cate.backHome') }}
+                    <i class="ri-arrow-left-line"></i>
+                    {{ $t('lang.cate.backHome') }}
                   </b-button>
                 </router-link>
               </div>
@@ -40,11 +41,12 @@
               v-if="post.post_img.url == false || post.post_categories[0].term_id == 2 || post.post_categories[0].term_id == 5"
             >
               <em class="article-list-type1 sticky-one-tag" v-if="post.sticky">
-                <i class="czs-arrow-up-l" style="font-size: 14px;font-weight: 600;"></i> {{ $t('lang.index.atTop') }}
+                <i class="czs-arrow-up-l" style="font-size: 14px;font-weight: 600;"></i>
+                {{ $t('lang.index.atTop') }}
               </em>
               <em v-if="post.post_categories[0].term_id == 7" class="article-list-type1">
                 <b>{{ post.post_categories[0].name }}</b>
-                {{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : word.list.cate_tag) }}
+                {{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : $t('lang.index.noneTag')) }}
               </em>
               <a
                 v-else-if="post.post_categories[0].term_id !== 2 && post.post_categories[0].term_id !== 5 && post.sticky"
@@ -68,9 +70,9 @@
                   <h5 style="margin-top: 10px;" v-html="post.title.rendered"></h5>
                 </a>
 
-                <a v-else :href="post.link" style="text-decoration: none;">
+                <router-link v-else :to="'/post/' + post.id" style="text-decoration: none;">
                   <h5 v-html="post.title.rendered"></h5>
-                </a>
+                </router-link>
                 <p
                   :class="post.post_categories[0].term_id == 2 ? 'cate-link-item-p' : ''"
                   v-html="post.post_excerpt.nine.substr(0, 80) + '...'"
@@ -96,11 +98,12 @@
                 ></div>
                 <div class="article-list-img-right">
                   <em class="article-list-type1 sticky-one-tag" v-if="post.sticky">
-                    <i class="czs-arrow-up-l" style="font-size: 14px;font-weight: 600;"></i> {{ $t('lang.index.atTop') }}
+                    <i class="czs-arrow-up-l" style="font-size: 14px;font-weight: 600;"></i>
+                    {{ $t('lang.index.atTop') }}
                   </em>
                   <em v-if="post.post_categories[0].term_id == 7" class="article-list-type1">
                     <b>{{ post.post_categories[0].name }}</b>
-                    {{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : word.list.cate_tag) }}
+                    {{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : $t('lang.index.noneTag')) }}
                   </em>
                   <a
                     v-else
@@ -109,12 +112,12 @@
                     class="img-cate"
                   ></a>
 
-                  <a :href="post.link" style="text-decoration: none;">
+                  <router-link :to="'/post/' + post.id" style="text-decoration: none;">
                     <h5
                       v-html="post.title.rendered"
                       style="margin: 0px;padding: 0px;margin-top:15px"
                     ></h5>
-                  </a>
+                  </router-link>
                   <p v-html="post.post_excerpt.nine.substr(0, 80) + '...'" :id="post.id"></p>
                   <div class="article-list-footer">
                     <span class="article-list-date">{{ post.post_date }}</span>
@@ -169,14 +172,19 @@ export default {
     return {
       posts: null,
       posts_id_sticky: "0",
-      cate: null,
+      cate: {
+        name: "文章标签",
+        description: "文章标签描述"
+      },
       loading: true, //v-if判断显示占位符
       loading_cate: true,
       errored: true,
       loading_stop: false,
       loading_first: false,
       loading_end: false,
-      paged: 1
+      paged: 1,
+      pagedLoading: false,
+      listLoading: {}
     };
   },
   created() {
@@ -207,7 +215,7 @@ export default {
 
           // 变更标题
           document.title = "TonyHe - " + this.cate.name;
-          
+
           //获取文章列表
           this.axios
             .get(
@@ -264,35 +272,59 @@ export default {
         return "margin-top: -10px;";
       }
     },
+    //加载下一页文章列表
     new_page: function() {
-      //加载下一页文章列表
-      this.axios
-        .get(
-          "https://blog.ouorz.com/wp-json/wp/v2/posts?sticky=0&exclude=" +
-            this.posts_id_sticky +
-            "&per_page=10&page=" +
-            this.paged +
-            "&categories=" +
-            this.$route.params.id
-        )
-        .then(response => {
-          if (response.data.length !== 0) {
-            //判断是否最后一页
-            $("#view-text").html("-&nbsp;Posts List&nbsp;-");
-            this.posts.push.apply(this.posts, response.data); //拼接在上一页之后
-            this.paged += 1;
-          } else {
-            $("#view-text").html("-&nbsp;All Posts&nbsp;-");
+      //语言包匹配
+      if (this.$i18n.locale == "zh-CN") {
+        this.listLoading = {
+          loading: "加载中",
+          list: "文章列表",
+          all: "全部文章"
+        };
+      } else {
+        this.listLoading = {
+          loading: "Loading",
+          list: "Posts List",
+          all: "All Posts"
+        };
+      }
+      if (!this.pagedLoading) {
+        this.pagedLoading = true;
+        $("#view-text").html("-&nbsp;" + this.listLoading.loading + "&nbsp;-");
+        this.axios
+          .get(
+            "https://blog.ouorz.com/wp-json/wp/v2/posts?sticky=0&exclude=" +
+              this.posts_id_sticky +
+              "&per_page=10&page=" +
+              this.paged +
+              "&tags=" +
+              this.$route.params.id
+          )
+          .then(response => {
+            if (response.data.length !== 0) {
+              //判断是否最后一页
+              $("#view-text").html(
+                "-&nbsp;" + this.listLoading.list + "&nbsp;-"
+              );
+              this.posts = this.posts.concat(response.data); //拼接在上一页之后
+              this.paged += 1;
+            } else {
+              $("#view-text").html(
+                "-&nbsp;" + this.listLoading.list + "&nbsp;-"
+              );
+              this.loading_first = false;
+              this.loading_end = true;
+            }
+            this.pagedLoading = false;
+          })
+          .catch(() => {
+            $("#view-text").html("-&nbsp;" + this.listLoading.all + "&nbsp;-");
+            this.paged = 1;
             this.loading_first = false;
             this.loading_end = true;
-          }
-        })
-        .catch(() => {
-          $("#view-text").html("-&nbsp;All Posts&nbsp;-");
-          this.paged = 1;
-          this.loading_first = false;
-          this.loading_end = true;
-        });
+            this.pagedLoading = true;
+          });
+      }
     }
   }
 };

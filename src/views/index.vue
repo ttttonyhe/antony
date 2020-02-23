@@ -47,7 +47,12 @@
                   v-html="'<b>' + post.post_categories[0].name + '</b>' +  ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : '技术')"
                 ></em>
                 <div v-else class="article-list-tags">
-                  <a :href="post.post_categories[0].link" v-html="post.post_categories[0].name"></a>
+                  <a
+                    class="list-normal-tag"
+                    style="color: rgba(255, 152, 0, 0.83) !important;"
+                    :href="post.post_categories[0].link"
+                    v-html="post.post_categories[0].name"
+                  ></a>
                   <template v-if="!post.post_tags.length">
                     <a style="margin-left: 5px;">{{ $t('lang.index.noneTag') }}</a>
                   </template>
@@ -137,12 +142,10 @@
                     <b>{{ post.post_categories[0].name }}</b>
                     {{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : $t('lang.index.noneTag')) }}
                   </em>
-                  <a
-                    v-else
-                    :href="post.post_categories[0].link"
-                    v-html="post.post_categories[0].name"
-                    class="img-cate"
-                  ></a>
+                  <a v-else :href="post.post_categories[0].link" class="img-cate list-normal-tag" style="color: rgba(255, 152, 0, 0.83) !important;">
+                    <b>{{ post.post_categories[0].name }}</b>
+                    {{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : $t('lang.index.noneTag')) }}
+                  </a>
                   <a :href="'/post/' + post.id" style="text-decoration: none;">
                     <h5
                       v-html="post.title.rendered"
@@ -222,14 +225,6 @@ const highlightCode = () => {
   });
 };
 
-var paged = 1; //获取当前页数
-
-/* 展现内容(避免爆代码) */
-$(".article-list").css("opacity", "1");
-$("#header-div").css("opacity", "1");
-$(".cat-real").attr("style", "display:inline-block");
-/* 展现内容(避免爆代码) */
-
 export default {
   name: "Index",
   components: {
@@ -259,15 +254,12 @@ export default {
         visible: false
       },
       lang: "zh-CN",
-      listLoading: {}
+      listLoading: {},
+      paged: 1,
+      pageLoading: false
     };
   },
   mounted() {
-    //屏蔽错误
-    window.onerror = function() {
-      return true;
-    };
-
     highlightCode();
     //获取分类
     this.axios
@@ -299,8 +291,7 @@ export default {
     //获取文章列表
     this.axios
       .get(
-        "https://blog.ouorz.com/wp-json/wp/v2/posts?sticky=1&" +
-          paged +
+        "https://blog.ouorz.com/wp-json/wp/v2/posts?sticky=1&per_page=10" +
           this.version
       )
       .then(res_sticky => {
@@ -313,9 +304,8 @@ export default {
 
         this.axios
           .get(
-            "https://blog.ouorz.com/wp-json/wp/v2/posts?sticky=0&exclude=" +
+            "https://blog.ouorz.com/wp-json/wp/v2/posts?sticky=0&per_page=10&exclude=" +
               this.posts_id_sticky +
-              paged +
               this.version
           )
           .then(res_normal => {
@@ -326,10 +316,10 @@ export default {
       .catch(() => {
         this.errored = false;
       })
-      .then(() => {
+      .finally(() => {
         this.loading = false;
         this.loading_first = true;
-        paged = 2; //加载完1页后累加页数
+        this.paged = 2; //加载完1页后累加页数
       });
   },
   methods: {
@@ -349,33 +339,41 @@ export default {
           all: "All Posts"
         };
       }
-      $("#view-text").html("-&nbsp;" + this.listLoading.loading + "&nbsp;-");
-      this.axios
-        .get(
-          "https://blog.ouorz.com/wp-json/wp/v2/posts?sticky=0&exclude=" +
-            this.posts_id_sticky +
-            "&per_page=10&page=" +
-            paged +
-            this.version
-        )
-        .then(response => {
-          if (response.data.length !== 0) {
-            //判断是否最后一页
-            $("#view-text").html("-&nbsp;" + this.listLoading.list + "&nbsp;-");
-            this.posts.push.apply(this.posts, response.data); //拼接在上一页之后
-            paged += 1;
-          } else {
-            $("#view-text").html("-&nbsp;" + this.listLoading.list + "&nbsp;-");
+      if (!this.pagedLoading) {
+        this.pagedLoading = true;
+        $("#view-text").html("-&nbsp;" + this.listLoading.loading + "&nbsp;-");
+        this.axios
+          .get(
+            "https://blog.ouorz.com/wp-json/wp/v2/posts?sticky=0&exclude=" +
+              this.posts_id_sticky +
+              "&per_page=10&page=" +
+              this.paged +
+              this.version
+          )
+          .then(response => {
+            if (response.data.length !== 0) {
+              //判断是否最后一页
+              $("#view-text").html(
+                "-&nbsp;" + this.listLoading.list + "&nbsp;-"
+              );
+              this.posts.push.apply(this.posts, response.data); //拼接在上一页之后
+              this.paged += 1;
+            } else {
+              $("#view-text").html(
+                "-&nbsp;" + this.listLoading.list + "&nbsp;-"
+              );
+              this.loading_first = false;
+              this.loading_end = true;
+            }
+            this.pagedLoading = false;
+          })
+          .catch(() => {
+            $("#view-text").html("-&nbsp;" + this.listLoading.all + "&nbsp;-");
+            this.paged = 1;
             this.loading_first = false;
             this.loading_end = true;
-          }
-        })
-        .catch(() => {
-          $("#view-text").html("-&nbsp;" + this.listLoading.all + "&nbsp;-");
-          paged = 1;
-          this.loading_first = false;
-          this.loading_end = true;
-        });
+          });
+      }
     },
     // 文章内容快速预览
     preview: function(postId) {
