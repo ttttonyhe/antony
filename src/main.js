@@ -10,9 +10,6 @@ import App from './App.vue'
 import router from './router'
 
 
-// Import RemixIcon Stylesheet
-import 'remixicon/fonts/remixicon.css'
-
 // Making Axios available globally
 import axios from 'axios'
 Vue.prototype.axios = axios
