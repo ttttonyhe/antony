@@ -42,7 +42,7 @@
         <li class="cat-item cat-item-4 cat-real" style="display: inline-block;">
           <router-link to="/cate/6" title="Talk about some shit in my life...">
             <div class="header-item-icon-div">
-              <i class="ri-hand-heart-line"></i>
+              <i class="ri-building-3-line"></i>
             </div>
             {{ $t('lang.top.bb') }}
           </router-link>

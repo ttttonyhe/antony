@@ -171,7 +171,7 @@
             <template
               v-else-if="post.post_categories[0].term_id === 58 || !!post.post_metas.status"
             >
-              <p class="article-list-content article-status" v-html="post.title.rendered"></p>
+              <h3 class="article-list-content article-status" v-html="post.title.rendered"></h3>
               <div class="article-list-footer">
                 <span class="article-list-date">{{ post.post_date }}</span>
                 <span class="article-list-divider">-</span>

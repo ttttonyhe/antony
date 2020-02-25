@@ -763,8 +763,32 @@ img {
         font-size: 23px;
     }
 
+    .article-list-footer span,
+    .article-list-footer a {
+        font-size: 13px !important;
+    }
+
+    .article-list-type1 {
+        font-size: 12px !important;
+        border-radius: 4px !important;
+        padding: 5.5px 11px 5.5px 12px !important;
+    }
+
     .list-show-div {
         white-space: nowrap;
+        margin-bottom: 0px !important;
+    }
+
+    .article-status {
+        font-size: 17px !important;
+        line-height: 1.3 !important;
+        font-weight: 400 !important;
+    }
+
+    .img-cate {
+        font-size: 12px !important;
+        border-radius: 4px !important;
+        padding: 5.5px 11px 5.5px 12px !important;
     }
 
     .donate-switch {
@@ -885,7 +909,7 @@ img {
 .article-list {
     display: block;
     padding: 0 10px;
-    margin: 35px 0;
+    margin: 10px 0px 35px 0px;
     margin-bottom: 60px;
     list-style: none
 }
@@ -1241,7 +1265,45 @@ img {
 
 @media all and (max-width: 767px) {
     .header-logo {
-        font-size: 30px !important;
+        font-size: 23px !important;
+    }
+
+    .lead {
+        margin-top: 0px;
+        margin-left: 5px;
+        font-size: 16px;
+        letter-spacing: .2px;
+        display: block !important;
+        margin: -5px 0px 0px 0px;
+    }
+
+    .index-cates {
+        padding: 25px 8px 10px 0px !important;
+        margin-bottom: 10px !important;
+
+        li {
+            display: inline-block !important;
+            box-shadow: none !important;
+            border: 1px solid #eee;
+            padding: 2px 12px !important;
+
+            a {
+                font-size: 15px !important;
+            }
+        }
+    }
+
+    .post_tags {
+        margin-top: -10px !important;
+    }
+
+    .header-item-icon-div {
+        transform: translateY(1px) !important;
+        margin: 0px !important;
+
+        i {
+            font-size: 16px !important;
+        }
     }
 
     .header-avatar-top {
@@ -1342,8 +1404,13 @@ img {
     }
 
     .header-nav {
-        text-align: left;
-        padding-top: 40px;
+        padding-top: 10px;
+        background: #fff;
+        border: 1px solid #eee;
+        text-align: center;
+        padding: 10px 0px 13px 0px;
+        border-radius: 4px;
+        margin-left: 10px;
     }
 
     .header-links {
@@ -1994,12 +2061,14 @@ table {
     }
 
     .article-list-item p {
-        font-size: 14px !important;
+        font-size: 13px;
+        line-height: 1.2;
     }
 
     .article-list-item h5 {
         padding: 0px;
-        font-size: 21px !important;
+        font-size: 19px !important;
+        margin: 5px 0px 0px !important;
     }
 
     .index-top {
@@ -2529,9 +2598,9 @@ pre {
 }
 
 .article-status {
-    font-size: 1.4rem !important;
+    font-size: 1.4rem;
     letter-spacing: 1px;
-    font-weight: 500;
+    font-weight: 400 !important;
     line-height: 1.4;
     margin: 0px 0 13px 0 !important
 }

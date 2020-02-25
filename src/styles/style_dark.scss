@@ -18,11 +18,18 @@
 }
 
 .header-logo {
-    color: #bdcadb !important;
+    color: #fff !important;
 }
 
 .lead {
-    color: rgb(102, 110, 142) !important;
+    color: #f1f2f3 !important;
+}
+
+@media screen and (max-width: 767px) {
+    .header-nav {
+        background: #394458 !important;
+        border: none !important;
+    }
 }
 
 .index-cates {
@@ -60,6 +67,10 @@
 
     p {
         color: rgb(203, 201, 201) !important;
+    }
+
+    a {
+        color: rgb(69, 197, 255);
     }
 }
 
@@ -246,14 +257,14 @@ h6 {
     border-left: 5px solid #1a4490 !important;
 }
 
-.article-list-type1{
+.article-list-type1 {
     background: rgba(0, 132, 255, 0.32) !important;
 }
 
-.img-cate{
+.img-cate {
     background: rgba(246, 247, 248, 0.27) !important;
 }
 
-.page-p{
+.page-p {
     color: #fff !important;
 }
