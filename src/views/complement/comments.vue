@@ -48,13 +48,13 @@
                 style="color: rgb(153, 153, 153);font-style: normal;padding: 3px 7px;border-radius: 4px;background: #f1f2f3;margin-left: 5px;"
               >{{ post.email }}</em>
             </div>
-            <a :href="'https://blog.ouorz.com/'+post.page_key" style="text-decoration:none">
+            <router-link :to="post.page_key == '249' ? '/page/249' : '/post/'+post.page_key" style="text-decoration:none">
               <markdown-it-vue class="md-body content-c" :content="post.content" />
-            </a>
+            </router-link>
             <div class="archive-footer">
               <em>{{ post.date }}</em>
               <em>
-                <a :href="post.link">{{ $t('lang.comments.viewLink') }}</a>
+                <a :href="post.link.length ? post.link : '/page/249'">{{ $t('lang.comments.viewLink') }}</a>
               </em>
             </div>
           </li>
