@@ -80,7 +80,7 @@ export default {
       })
       .finally(() => {
         this.page.title = this.posts.title.rendered;
-        this.page.content = this.posts.content.rendered;
+        this.page.content = this.posts.page_content;
         this.page.views = this.posts.post_metas.views;
         this.page.date = this.posts.post_date;
         this.loading = false;
