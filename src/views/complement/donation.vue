@@ -63,9 +63,7 @@
                     <h4 class="donate-h4" v-else>支付宝</h4>
                   </a>
                 </div>
-                <div
-                  style="flex: 1 1 0%;text-align: center;padding: 20px 0px 5px 0px;border-radius: 6px;margin-right: 10px;background:rgb(89, 182, 35);"
-                >
+                <div class="payment-div-1-1">
                   <a
                     target="_blank"
                     href="https://static.ouorz.com/wechatpay.png"
@@ -79,6 +77,23 @@
                   </a>
                 </div>
               </div>
+
+              <div class="payment-div-2 payment-div-2-2" id="view-bitcoin">
+                <a href="#" style="text-decoration:none">
+                  <h4 class="donate-bitcoin" v-if="english">
+                    <i class="ri-bit-coin-line"></i> Bitcoin
+                  </h4>
+                  <h4 class="donate-bitcoin" v-else>
+                    <i class="ri-bit-coin-line"></i> 比特币
+                  </h4>
+                </a>
+              </div>
+              <b-tooltip
+                target="view-bitcoin"
+                triggers="hover"
+                placement="top"
+              >bc1qz2kgqp26wtel6n7rl0cw053pxgtwt5vrr5hyd7pqmmjfhqxex8dq8fknpx</b-tooltip>
+
               <div class="payment-div-2">
                 <a
                   target="_blank"
@@ -93,6 +108,7 @@
                   </h4>
                 </a>
               </div>
+
               <p class="page-p donate-p" v-if="english">
                 The following list will not be updated automatically, please
                 <a
@@ -123,7 +139,7 @@
                   </tr>
                   <tr v-for="(donor,index) in donors" :key="index">
                     <td>{{ donor.name }}</td>
-                    <td>¥{{ donor.amount.toFixed(2) }}</td>
+                    <td>{{ donor.unit }}{{ donor.amount.toFixed(2) }}</td>
                     <td>{{ donor.date }}</td>
                   </tr>
                 </tbody>

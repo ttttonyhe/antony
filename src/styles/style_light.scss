@@ -3125,6 +3125,21 @@ input:focus {
     }
 }
 
+.donate-bitcoin {
+    margin: 5px 0px 10px;
+    color: white;
+    font-size: 20px;
+    letter-spacing: 1px;
+
+    i {
+        font-size: 22px;
+        display: inline-block;
+        vertical-align: text-top;
+        margin-top: -2.7px;
+        font-weight: 500;
+    }
+}
+
 .donate-table {
     border-color: #eee;
     border-collapse: collapse;
@@ -3139,10 +3154,24 @@ input:focus {
     margin-bottom: 20px !important;
 }
 
-.list-normal-tag{
+.list-normal-tag {
     background: rgba(255, 152, 0, 0.16) !important;
     color: rgba(255, 152, 0, 0.83) !important;
     padding: 6px 15px 6px 15px !important;
+}
+
+.payment-div-1-1 {
+    flex: 1 1 0%;
+    text-align: center;
+    padding: 20px 0px 5px 0px;
+    border-radius: 6px;
+    margin-right: 10px;
+    background: rgb(89, 182, 35);
+}
+
+.payment-div-2-2 {
+    background: rgb(233, 144, 19) !important;
+    margin-bottom: 0px !important;
 }
 
 /*# sourceMappingURL=style.css.map */
