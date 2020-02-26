@@ -23,7 +23,7 @@
                 {{ $t('lang.post.prev') }}
               </h4>
               <p>
-                <a :href="post_prenext.prev[0]" v-html="post_prenext.prev[1]"></a>
+                <a :href="'/post/' + post_prenext.prev[0]" v-html="post_prenext.prev[1]"></a>
               </p>
             </div>
             <div
@@ -35,7 +35,7 @@
                 {{ $t('lang.post.next') }}
               </h4>
               <p>
-                <a :href="post_prenext.next[0]" v-html="post_prenext.next[1]"></a>
+                <a :href="'/post/' + post_prenext.next[0]" v-html="post_prenext.next[1]"></a>
               </p>
             </div>
             <div
@@ -207,10 +207,6 @@ export default {
     };
   },
   created() {
-    //屏蔽错误
-    window.onerror = function() {
-      return true;
-    };
     //获取文章
     this.axios
       .get(

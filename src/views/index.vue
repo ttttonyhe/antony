@@ -47,12 +47,12 @@
                   v-html="'<b>' + post.post_categories[0].name + '</b>' +  ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : '技术')"
                 ></em>
                 <div v-else class="article-list-tags">
-                  <a
+                  <router-link
                     class="list-normal-tag"
                     style="color: rgba(255, 152, 0, 0.83) !important;"
-                    :href="post.post_categories[0].link"
+                    :to="'/cate/' + post.post_categories[0].term_id"
                     v-html="post.post_categories[0].name"
-                  ></a>
+                  ></router-link>
                   <template v-if="!post.post_tags.length">
                     <a style="margin-left: 5px;">{{ $t('lang.index.noneTag') }}</a>
                   </template>
@@ -142,10 +142,10 @@
                     <b>{{ post.post_categories[0].name }}</b>
                     {{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : $t('lang.index.noneTag')) }}
                   </em>
-                  <a v-else :href="post.post_categories[0].link" class="img-cate list-normal-tag" style="color: rgba(255, 152, 0, 0.83) !important;">
+                  <router-link v-else :to="'/cate/' + post.post_categories[0].term_id" class="img-cate list-normal-tag" style="color: rgba(255, 152, 0, 0.83) !important;">
                     <b>{{ post.post_categories[0].name }}</b>
                     {{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : $t('lang.index.noneTag')) }}
-                  </a>
+                  </router-link>
                   <a :href="'/post/' + post.id" style="text-decoration: none;">
                     <h5
                       v-html="post.title.rendered"

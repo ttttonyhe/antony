@@ -49,12 +49,12 @@
                 <b>{{ post.post_categories[0].name }}</b>
                 {{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : $t('lang.index.noneTag')) }}
               </em>
-              <a
+              <router-link
                 v-else-if="post.post_categories[0].term_id !== 2 && post.post_categories[0].term_id !== 5 && post.sticky"
-                :href="post.post_categories[0].link"
+                :to="'/cate/' + post.post_categories[0].term_id"
                 v-html="post.post_categories[0].name"
                 class="img-cate"
-              ></a>
+              ></router-link>
               <div v-if="post.post_categories[0].term_id == 2" class="link-list-left">
                 <img :src="post.post_metas.img[0]" class="link-list-img" />
               </div>
@@ -108,12 +108,12 @@
                     <b>{{ post.post_categories[0].name }}</b>
                     {{ ' | ' + (post.post_metas.tag_name ? post.post_metas.tag_name.toUpperCase() : $t('lang.index.noneTag')) }}
                   </em>
-                  <a
+                  <router-link
                     v-else
-                    :href="post.post_categories[0].link"
+                    :to="'/cate/' + post.post_categories[0].term_id"
                     v-html="post.post_categories[0].name"
                     class="img-cate"
-                  ></a>
+                  ></router-link>
 
                   <router-link :to="'/post/' + post.id" style="text-decoration: none;">
                     <h5
