@@ -2,7 +2,7 @@
   <div>
     <header class="tony-header-fixed" id="header-div">
       <div class="header-div1-1" style="flex-basis:100%">
-        <a href="https://www.ouorz.com" class="mob-header-text">TonyHe</a>
+        <router-link to="/" class="mob-header-text">TonyHe</router-link>
       </div>
     </header>
   </div>

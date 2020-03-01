@@ -1,6 +1,6 @@
 <template>
   <!-- 英文版长内容展示不同样式 -->
-  <div :class="'index-cates ' + ($i18n.locale == 'en-US' ? 'index-long' : '')">
+  <div :class="'index-cates cate-cates ' + ($i18n.locale == 'en-US' ? 'index-long' : '')">
     <template v-if="loading">
       <li
         class="cat-item cat-item-4 loading-line"

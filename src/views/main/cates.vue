@@ -3,7 +3,7 @@
     <div class="grid grid-centered" style="max-width: 660px;padding: 0px 20px;margin-top: 80px">
       <div class="grid-cell" id="grid-cell">
         <div id="header_info">
-          <nav class="header-nav reveal">
+          <nav class="header-nav reveal cate-top">
             <div class="cate-nav">
               <div>
                 <router-link to="/" class="top1 header-logo cate-name" v-html="cate.name"></router-link>
@@ -75,7 +75,7 @@
                   <h5 v-html="post.title.rendered"></h5>
                 </router-link>
                 <p
-                  :class="post.post_categories[0].term_id == 2 ? 'cate-link-item-p' : ''"
+                  :class="post.post_categories[0].term_id == 2 ? 'cate-link-item-p cate-link-p' : ''"
                   v-html="post.post_excerpt.nine.substr(0, 80) + '...'"
                 ></p>
                 <div class="article-list-footer">

@@ -3,7 +3,7 @@
     <div class="grid grid-centered" style="max-width: 660px;padding: 0px 20px;margin-top: 80px">
       <div class="grid-cell" id="grid-cell">
         <div id="header_info">
-          <nav class="header-nav reveal">
+          <nav class="header-nav reveal cate-top">
             <div class="cate-nav">
               <div>
                 <router-link to="/" class="top1 header-logo cate-name" v-html="cate.name"></router-link>
