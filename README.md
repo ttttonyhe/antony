@@ -65,7 +65,7 @@ yarn run build
 <br/>
 
 ### Donate to me 赞助与列表
-Your name will be on the list [Donation](https://www.snapaper.com/donate)
+Your name will be on the list [Donation](https://www.ouorz.com/donate)
 <br/>
 
 ![Donate](https://i.loli.net/2019/02/18/5c6a80afd1e26.png)

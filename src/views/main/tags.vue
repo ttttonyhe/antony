@@ -173,8 +173,7 @@ export default {
       posts: null,
       posts_id_sticky: "0",
       cate: {
-        name: "文章标签",
-        description: "文章标签描述"
+        name: "文章标签"
       },
       loading: true, //v-if判断显示占位符
       loading_cate: true,
